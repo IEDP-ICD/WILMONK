@@ -1,0 +1,10 @@
+[
+  { "nombre": "Sesión editorial Black", "categoria": "Editorial", "archivo": "editorial-black.jpg" },
+  { "nombre": "Pasarela colección 2026", "categoria": "Pasarela", "archivo": "pasarela-2026.jpg" },
+  { "nombre": "Proceso de confección", "categoria": "Backstage", "archivo": "proceso-costura.jpg" },
+  { "nombre": "Detalle de tela", "categoria": "Detalle", "archivo": "detalle-tela.jpg" },
+  { "nombre": "Sesión exterior", "categoria": "Editorial", "archivo": "editorial-exterior.jpg" },
+  { "nombre": "Making of vestido", "categoria": "Backstage", "archivo": "making-of.jpg" },
+  { "nombre": "Colección completa", "categoria": "Pasarela", "archivo": "coleccion-completa.jpg" },
+  { "nombre": "Bordados a mano", "categoria": "Detalle", "archivo": "bordados.jpg" }
+]
