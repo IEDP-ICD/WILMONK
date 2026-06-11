@@ -1,0 +1,19 @@
+{
+  "mision": "Diseñar y confeccionar prendas únicas que fusionen la moda contemporánea con la identidad propia de cada cliente, ofreciendo un servicio de costura artesanal que trascienda tendencias y construya una marca estudiantil con proyección profesional desde la Institución Educativa La Divina Pastora.",
+  "vision": "Consolidar a WILMONK como una marca de moda estudiantil reconocida en Cúcuta y la región, expandiendo nuestra presencia digital y física, y siendo referente de que el talento creativo y la disciplina artesanal de jóvenes diseñadoras puede competir con propuestas de alto nivel.",
+  "sobre_nosotros": "Somos dos estudiantes de la IEDP que convertimos la costura en una marca. WILMONK nació de la convicción de que la moda puede ser intemporal, valiente y accesible al mismo tiempo. Diseñamos, confeccionamos y contamos cada prenda como una historia.",
+  "integrantes": [
+    {
+      "nombre": "Nombre Apellido",
+      "rol": "Diseño y confección",
+      "descripcion": "Responsable del diseño de patrones, selección de telas y confección de cada prenda. Su visión estética define la identidad visual de la marca WILMONK.",
+      "foto": "integrante1.jpg"
+    },
+    {
+      "nombre": "Nombre Apellido",
+      "rol": "Marketing y dirección creativa",
+      "descripcion": "Encargada de la estrategia de marketing digital, sesiones fotográficas, redes sociales y la narrativa visual que posiciona a WILMONK como marca de moda.",
+      "foto": "integrante2.jpg"
+    }
+  ]
+}
