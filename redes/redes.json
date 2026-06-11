@@ -1,0 +1,6 @@
+[
+  { "red": "Instagram",  "icono": "📸", "handle": "@wilmonk.co",    "url": "https://instagram.com/wilmonk.co" },
+  { "red": "TikTok",     "icono": "🎵", "handle": "@wilmonk.co",    "url": "https://tiktok.com/@wilmonk.co" },
+  { "red": "Pinterest",  "icono": "📌", "handle": "WILMONK",         "url": "https://pinterest.com/wilmonk" },
+  { "red": "WhatsApp",   "icono": "💬", "handle": "Pide tu prenda",  "url": "https://wa.me/573001234567" }
+]
