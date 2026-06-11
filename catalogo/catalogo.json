@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "Vestido Editorial",
+    "categoria": "Vestidos",
+    "descripcion": "Vestido de corte midi con silueta estructurada, hombros marcados y tela fluida. Pieza estrella de la colección 2026.",
+    "precio": "$95.000",
+    "imagen": "vestido-editorial.jpg",
+    "disponible": true,
+    "destacada": true
+  },
+  {
+    "nombre": "Blusa Atemporal",
+    "categoria": "Blusas",
+    "descripcion": "Blusa de manga larga con escote en V y detalles en los puños. Confeccionada en tela satinada.",
+    "precio": "$55.000",
+    "imagen": "blusa-atemporal.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Falda Asimétrica",
+    "categoria": "Faldas",
+    "descripcion": "Falda de corte asimétrico con vuelo lateral. Disponible en negro y vino.",
+    "precio": "$60.000",
+    "imagen": "falda-asimetrica.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Conjunto Formal",
+    "categoria": "Conjuntos",
+    "descripcion": "Conjunto de blazer y pantalón de tiro alto con corte recto. Estilo ejecutivo con personalidad.",
+    "precio": "$130.000",
+    "imagen": "conjunto-formal.jpg",
+    "disponible": true,
+    "destacada": false
+  }
+]
