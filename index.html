@@ -123,7 +123,7 @@
     /* ═══════════════════════════════════════════════════════════
        MARQUEE: CINTA DE TEXTO ANIMADA
        Barra de texto deslizante al estilo de portada de revista
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     .marquee-wrap {
       background: var(--rojo);
       padding: 8px 0;
@@ -754,7 +754,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        GALERÍA EDITORIAL
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     #galeria-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -814,11 +814,15 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       VIDEOS DE MODA
-       ═══════════════════════════════════════════════════════════ -->
+       VIDEOS DE MODA — fichas de TikTok
+       TikTok no permite incrustar un reproductor en un sitio estático
+       sin backend, así que cada ficha es un enlace que abre el video
+       en TikTok, con la miniatura y descripción reales traídas por
+       JS a partir del tiktok_id
+       ═══════════════════════════════════════════════════════════ */
     #videos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2px;
       background: var(--gris-medio);
     }
@@ -829,17 +833,55 @@
       overflow: hidden;
     }
 
-    /* Iframe del video */
+    /* Miniatura del video en proporción vertical (formato TikTok) */
     .video-wrap {
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 9 / 16;
       background: var(--carbon);
+      position: relative;
+      display: block;
     }
 
-    .video-wrap iframe {
+    .video-wrap img {
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
       display: block;
+    }
+
+    .video-wrap-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    /* Botón de play superpuesto a la miniatura */
+    .video-play-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .video-wrap:hover .video-play-badge {
+      background: rgba(0,0,0,0.45);
+    }
+
+    .video-play-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--negro);
     }
 
     /* Info del video */
@@ -875,7 +917,7 @@
     /* ═══════════════════════════════════════════════════════════
        QUIÉNES SOMOS — 2 INTEGRANTES
        Layout editorial: foto grande + texto
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     #equipo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -956,7 +998,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        REDES SOCIALES
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     #redes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1023,7 +1065,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        SKELETONS FASHION (oscuros)
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     .skeleton {
       background: linear-gradient(
         90deg,
@@ -1061,7 +1103,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        LIGHTBOX
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     #lightbox {
       display: none;
       position: fixed;
@@ -1107,7 +1149,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        FOOTER EDITORIAL
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     footer {
       background: var(--negro);
       border-top: 1px solid var(--gris-medio);
@@ -1206,7 +1248,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        RESPONSIVE
-       ═══════════════════════════════════════════════════════════ -->
+       ═══════════════════════════════════════════════════════════ */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-foto { height: 60vh; }
@@ -1431,7 +1473,8 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════
-       VIDEOS DE MODA
+       VIDEOS DE MODA — todos son de TikTok, no se maneja YouTube
+       ni otra red en este proyecto.
        Archivo: videos/videos.json
        Formato:
        [
@@ -1439,9 +1482,15 @@
            "titulo": "Pasarela colección 2026",
            "categoria": "Pasarela",
            "descripcion": "Presentación completa de nuestra primera colección",
-           "youtube_id": "CODIGO_YOUTUBE"
+           "tiktok_id": "7123456789012345678"
          }
        ]
+       El tiktok_id es la parte numérica de la URL del video:
+       tiktok.com/@usuario/video/ESTE_NÚMERO
+       Al cargar la página, el código consulta la API pública oEmbed
+       de TikTok con ese ID y reemplaza la miniatura y la descripción
+       por las reales del video. Si TikTok no responde (sin internet,
+       video privado o eliminado) se usan "titulo" y "descripcion".
        ═══════════════════════════════════════════════════════════ -->
   <section class="seccion seccion-carbon" id="videos">
     <div class="contenedor">
@@ -1713,26 +1762,79 @@
           return;
         }
 
-        grid.innerHTML = videos.map(v => `
+        grid.innerHTML = videos.map((v, i) => {
+          const url = urlTikTok(v.tiktok_id);
+          return `
           <div class="video-card">
-            <div class="video-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/${v.youtube_id}"
-                title="${escHtml(v.titulo)}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen loading="lazy"
-              ></iframe>
-            </div>
+            <a class="video-wrap" href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver en TikTok: ${escHtml(v.titulo)}">
+              <div class="video-wrap-placeholder" id="video-thumb-${i}">🎵</div>
+              <div class="video-play-badge"><span class="video-play-icon">▶</span></div>
+            </a>
             <div class="video-info">
               <div class="video-cat">${escHtml(v.categoria || 'Video')}</div>
               <div class="video-titulo">${escHtml(v.titulo)}</div>
-              <p class="video-desc">${escHtml(v.descripcion || '')}</p>
+              <p class="video-desc" id="video-desc-${i}">${escHtml(v.descripcion || 'Toca para verlo en TikTok')}</p>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
+
+        // Trae la miniatura y la descripción reales de cada video desde TikTok
+        videos.forEach((v, i) => {
+          if (v.tiktok_id) cargarDatosTikTok(v.tiktok_id, i);
+        });
 
       } catch {
         grid.innerHTML = mensajeVacio('🎬', 'SIN VIDEOS', 'Crea videos/videos.json');
+      }
+    }
+
+    /*
+    ══════════════════════════════════════════════════════════════
+    FUNCIÓN: urlTikTok
+    Arma la URL del video a partir del tiktok_id. El nombre de
+    usuario en la URL ("@video") es un relleno: TikTok identifica el
+    video por el número al final, así que funciona igual para abrir
+    el video y para consultar el oEmbed sin tener que guardar también
+    el usuario en el JSON.
+    ══════════════════════════════════════════════════════════════
+    */
+    function urlTikTok(tiktokId) {
+      return `https://www.tiktok.com/@video/video/${encodeURIComponent(tiktokId || '')}`;
+    }
+
+    /*
+    ══════════════════════════════════════════════════════════════
+    FUNCIÓN: cargarDatosTikTok — Consulta la API pública oEmbed de
+    TikTok (sin backend ni API key) para reemplazar el ícono musical
+    por la miniatura real del video y la descripción manual por el
+    texto real que el video tiene en TikTok. Si TikTok no responde
+    (sin internet, video privado o eliminado), la ficha se queda tal
+    cual quedó con los datos de videos.json.
+    ══════════════════════════════════════════════════════════════
+    */
+    async function cargarDatosTikTok(tiktokId, i) {
+      try {
+        const resp = await fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(urlTikTok(tiktokId))}`);
+        if (!resp.ok) throw new Error('oEmbed de TikTok no disponible');
+        const data = await resp.json();
+
+        const thumbEl = document.getElementById(`video-thumb-${i}`);
+        if (thumbEl && data.thumbnail_url) {
+          const img = document.createElement('img');
+          img.id = `video-thumb-${i}`;
+          img.src = data.thumbnail_url;
+          img.alt = data.title || 'Video de TikTok';
+          img.loading = 'lazy';
+          thumbEl.replaceWith(img);
+        }
+
+        const descEl = document.getElementById(`video-desc-${i}`);
+        if (descEl && data.title) {
+          descEl.textContent = data.title;
+        }
+      } catch (err) {
+        console.warn('No se pudo obtener la descripción de TikTok:', err.message);
       }
     }
 
