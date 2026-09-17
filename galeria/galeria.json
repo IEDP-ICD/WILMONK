@@ -1,10 +1,14 @@
 [
-  { "nombre": "Sesión editorial Black", "categoria": "Editorial", "archivo": "editorial-black.jpg" },
-  { "nombre": "Pasarela colección 2026", "categoria": "Pasarela", "archivo": "pasarela-2026.jpg" },
-  { "nombre": "Proceso de confección", "categoria": "Backstage", "archivo": "proceso-costura.jpg" },
-  { "nombre": "Detalle de tela", "categoria": "Detalle", "archivo": "detalle-tela.jpg" },
-  { "nombre": "Sesión exterior", "categoria": "Editorial", "archivo": "editorial-exterior.jpg" },
-  { "nombre": "Making of vestido", "categoria": "Backstage", "archivo": "making-of.jpg" },
-  { "nombre": "Colección completa", "categoria": "Pasarela", "archivo": "coleccion-completa.jpg" },
-  { "nombre": "Bordados a mano", "categoria": "Detalle", "archivo": "bordados.jpg" }
+  { "nombre": "Polo blanco", "categoria": "Camisas", "archivo": "polo-blanco.jpg" },
+  { "nombre": "Polo azul navy", "categoria": "Camisas", "archivo": "polo-azul.jpg" },
+  { "nombre": "Polo negro", "categoria": "Camisas", "archivo": "polo-negro.jpg" },
+  { "nombre": "Polo rojo", "categoria": "Camisas", "archivo": "polo-rojo.jpg" },
+  { "nombre": "Polo beige", "categoria": "Camisas", "archivo": "polo-beige.jpg" },
+  { "nombre": "Polo vino", "categoria": "Camisas", "archivo": "polo-vino.jpg" },
+  { "nombre": "Pantalón cargo negro", "categoria": "Pantalones", "archivo": "pantalon-negro.jpg" },
+  { "nombre": "Pantalón cargo azul", "categoria": "Pantalones", "archivo": "pantalon-azul.jpg" },
+  { "nombre": "Pantalón cargo verde", "categoria": "Pantalones", "archivo": "pantalon-verde.jpg" },
+  { "nombre": "Pantalón cargo café", "categoria": "Pantalones", "archivo": "pantalon-cafe.jpg" },
+  { "nombre": "Pantalón cargo blanco", "categoria": "Pantalones", "archivo": "pantalon-blanco.jpg" },
+  { "nombre": "Pantalón cargo beige", "categoria": "Pantalones", "archivo": "pantalon-beige.jpg" }
 ]
