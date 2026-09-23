@@ -1277,6 +1277,309 @@
       * { cursor: auto; }
       .cursor { display: none; }
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       REVISTA INTERACTIVA — catálogo tipo flipbook
+       Pilas de páginas absolutas que giran en 3D sobre su lomo
+       (transform-origin: left) para simular hojas reales pasando.
+       Sin librerías externas: solo CSS 3D + JS vanilla.
+       ═══════════════════════════════════════════════════════════ */
+    .revista-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 1rem 1.5rem 0;
+    }
+
+    .revista-viewport {
+      perspective: 2400px;
+      perspective-origin: 50% 50%;
+    }
+
+    .revista-libro {
+      position: relative;
+      width: min(400px, 86vw);
+      aspect-ratio: 2 / 3;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 40px 60px rgba(0,0,0,0.7));
+    }
+
+    .revista-pagina {
+      position: absolute;
+      inset: 0;
+      background: var(--negro-suave);
+      border: 1px solid var(--gris-medio);
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transition: transform 1.1s cubic-bezier(.645,.045,.355,1);
+      overflow: hidden;
+    }
+
+    /* Sombra sutil de lomo — da sensación de páginas encuadernadas */
+    .revista-pagina::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.55), transparent 6%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .revista-pagina.volteada {
+      transform: rotateY(-180deg);
+    }
+
+    /* ── Portada estilo revista ────────────────────────────────── */
+    .revista-portada {
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(204,27,27,0.25), transparent 60%),
+        var(--negro);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(16px, 4%, 28px);
+      cursor: pointer;
+    }
+
+    .revista-portada-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-ui);
+      font-size: clamp(0.5rem, 1.6vw, 0.62rem);
+      letter-spacing: 0.15em;
+      color: var(--blanco-90);
+      line-height: 1.7;
+    }
+
+    .revista-portada-top .der { text-align: right; }
+    .revista-portada-top em { color: var(--rojo-vivo); font-style: normal; }
+
+    .revista-portada-marca {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 11vw, 4.2rem);
+      font-weight: 600;
+      text-align: center;
+      color: var(--rojo);
+      text-shadow: var(--rojo-glow), 0 0 80px rgba(204,27,27,0.5);
+      letter-spacing: 0.03em;
+      line-height: 0.95;
+    }
+
+    .revista-portada-centro {
+      text-align: center;
+    }
+
+    .revista-portada-wk {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 10vw, 3.6rem);
+      color: var(--rojo-vivo);
+      text-shadow: var(--rojo-glow);
+      line-height: 0.9;
+    }
+
+    .revista-portada-anio {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 6vw, 2.1rem);
+      color: var(--blanco);
+      margin-top: 4px;
+    }
+
+    .revista-portada-cta {
+      margin-top: 14px;
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      border-top: 1px solid var(--gris-medio);
+      padding-top: 10px;
+    }
+
+    .revista-portada-footer {
+      text-align: center;
+    }
+
+    .revista-portada-tagline {
+      font-family: var(--font-ui);
+      font-size: clamp(0.55rem, 1.7vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--blanco-60);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .revista-barcode {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2px;
+      height: 30px;
+      margin-bottom: 8px;
+    }
+
+    .revista-barcode span {
+      display: block;
+      width: 2px;
+      height: 100%;
+      background: var(--blanco-90);
+    }
+
+    .revista-barcode span:nth-child(3n) { width: 1px; height: 70%; }
+    .revista-barcode span:nth-child(5n) { width: 3px; }
+    .revista-barcode span:nth-child(7n) { height: 55%; }
+
+    .revista-portada-label {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--gris-texto);
+    }
+
+    /* ── Páginas de producto ───────────────────────────────────── */
+    .revista-producto {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .revista-foto-wrap {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 26px 26px 10px;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.05), transparent 65%);
+      overflow: hidden;
+    }
+
+    .revista-foto-wrap img {
+      max-width: 90%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 35px 30px rgba(0,0,0,0.7));
+      transition: transform 0.4s ease-out;
+      will-change: transform;
+    }
+
+    .revista-info {
+      padding: 14px 22px 22px;
+      border-top: 1px solid var(--gris-medio);
+      background: var(--negro-suave);
+    }
+
+    .revista-categoria {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rojo-vivo);
+      margin-bottom: 4px;
+    }
+
+    .revista-nombre {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 4vw, 1.35rem);
+      color: var(--blanco);
+      margin-bottom: 12px;
+    }
+
+    .revista-tallas-label {
+      font-family: var(--font-ui);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gris-texto);
+      margin-bottom: 6px;
+    }
+
+    .revista-tallas {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .talla-btn {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 600;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 6px;
+      border: 1px solid var(--gris-medio);
+      background: transparent;
+      color: var(--blanco-90);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .talla-btn:hover { border-color: var(--rojo); color: var(--rojo-vivo); }
+
+    .talla-btn.activa {
+      background: var(--rojo);
+      border-color: var(--rojo);
+      color: var(--blanco);
+    }
+
+    .revista-cotizar {
+      width: 100%;
+      text-align: center;
+      font-size: 0.65rem;
+      padding: 12px 20px;
+    }
+
+    /* ── Controles de navegación ───────────────────────────────── */
+    .revista-controles {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .revista-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--gris-medio);
+      background: transparent;
+      color: var(--blanco);
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .revista-btn:hover:not(.deshabilitado) {
+      border-color: var(--rojo);
+      color: var(--rojo-vivo);
+      transform: scale(1.08);
+    }
+
+    .revista-btn.deshabilitado {
+      opacity: 0.25;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .revista-contador {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gris-texto);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .revista-libro { width: min(320px, 80vw); }
+      .revista-wrap { padding-top: 0; }
+    }
   </style>
 </head>
 
@@ -1323,6 +1626,7 @@
       <li><a href="#mision">Identidad</a></li>
       <li><a href="#catalogo">Colección</a></li>
       <li><a href="#galeria">Editorial</a></li>
+      <li><a href="#revista">Revista</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#nosotros">Nosotras</a></li>
       <li><a href="#redes" class="nav-cta">Contacto</a></li>
@@ -1492,6 +1796,36 @@
        por las reales del video. Si TikTok no responde (sin internet,
        video privado o eliminado) se usan "titulo" y "descripcion".
        ═══════════════════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════════════════════
+       REVISTA INTERACTIVA — catálogo tipo flipbook
+       Los productos están definidos en el array `productos` dentro
+       del bloque de JavaScript (buscar "REVISTA INTERACTIVA"). Usa las
+       fotos que ya están en galeria/. Para agregar una prenda nueva,
+       añade un objeto al array con: tipo, nombre, archivo, tallas.
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="seccion seccion-negra" id="revista">
+    <div class="contenedor">
+      <div class="seccion-header">
+        <div class="seccion-meta">
+          <div class="seccion-num">04 — CATÁLOGO DIGITAL</div>
+          <div class="seccion-titulo">Revista<br><em>Interactiva</em></div>
+        </div>
+        <p class="seccion-desc">Hojea la colección 2026 como una revista y pide tu cotización por WhatsApp</p>
+      </div>
+    </div>
+
+    <div class="revista-wrap">
+      <div class="revista-viewport">
+        <div class="revista-libro" id="revistaLibro"></div>
+      </div>
+      <div class="revista-controles">
+        <button class="revista-btn" id="revistaPrev" aria-label="Página anterior">‹</button>
+        <span class="revista-contador" id="revistaContador">1 / 13</span>
+        <button class="revista-btn" id="revistaNext" aria-label="Página siguiente">›</button>
+      </div>
+    </div>
+  </section>
   <section class="seccion seccion-carbon" id="videos">
     <div class="contenedor">
       <div class="seccion-header">
@@ -1614,6 +1948,7 @@
         cargarVideos(),
         cargarRedes()
       ]);
+      inicializarRevista();
     });
 
 
@@ -1747,6 +2082,139 @@
         grid.innerHTML = mensajeVacio('📷', 'SIN GALERÍA', 'Crea galeria/galeria.json');
       }
     }
+
+
+    /* ════ REVISTA INTERACTIVA ══════════════════════════════════
+       Catálogo tipo flipbook. Cada objeto del array es una prenda:
+       tipo: 'polo' o 'pantalon' (define el texto de categoría)
+       nombre, archivo (imagen dentro de galeria/), tallas
+       ═══════════════════════════════════════════════════════════ */
+    const WHATSAPP_NUMERO = '573001234567';
+
+    const productosRevista = [
+      { tipo: 'polo', nombre: 'Polo Blanco', archivo: 'polo-blanco.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'polo', nombre: 'Polo Azul Navy', archivo: 'polo-azul.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'polo', nombre: 'Polo Negro', archivo: 'polo-negro.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'polo', nombre: 'Polo Rojo', archivo: 'polo-rojo.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'polo', nombre: 'Polo Beige', archivo: 'polo-beige.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'polo', nombre: 'Polo Vino', archivo: 'polo-vino.jpg', tallas: ['S','M','L','XL'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Negro', archivo: 'pantalon-negro.jpg', tallas: ['30','32','34','36'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Azul', archivo: 'pantalon-azul.jpg', tallas: ['30','32','34','36'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Verde', archivo: 'pantalon-verde.jpg', tallas: ['30','32','34','36'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Café', archivo: 'pantalon-cafe.jpg', tallas: ['30','32','34','36'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Blanco', archivo: 'pantalon-blanco.jpg', tallas: ['30','32','34','36'] },
+      { tipo: 'pantalon', nombre: 'Pantalón Cargo Beige', archivo: 'pantalon-beige.jpg', tallas: ['30','32','34','36'] }
+    ];
+
+    let revistaPaginaActual = 0;
+    const revistaTotalPaginas = productosRevista.length + 1; // +1 por la portada
+    const revistaSeleccion = {};
+
+    function inicializarRevista() {
+      const libro = document.getElementById('revistaLibro');
+      if (!libro) return;
+
+      const barras = Array.from({ length: 40 }, () => '<span></span>').join('');
+
+      let html = `
+        <div class="revista-pagina revista-portada" style="z-index:${revistaTotalPaginas}" data-index="0" onclick="revistaIrA(1)">
+          <div class="revista-portada-top">
+            <div>WILMONK<br>NEW VISION.<br>BOLD FUTURE.<br>TIMELESS DESIGN.</div>
+            <div class="der">LIMITED<br>EDITION<br><em>2026</em><br>THE NEXT CHAPTER</div>
+          </div>
+          <div class="revista-portada-marca">WILMONK</div>
+          <div class="revista-portada-centro">
+            <div class="revista-portada-wk">WK</div>
+            <div class="revista-portada-anio">2026</div>
+            <div class="revista-portada-cta">Toca para hojear el catálogo →</div>
+          </div>
+          <div class="revista-portada-footer">
+            <div class="revista-portada-tagline">BEYOND TRENDS.<br>BEYOND LIMITS.<br>BEYOND TOMORROW.</div>
+            <div class="revista-barcode">${barras}</div>
+            <div class="revista-portada-label">WILMONK | NEW ERA</div>
+          </div>
+        </div>
+      `;
+
+      productosRevista.forEach((p, i) => {
+        const idx = i + 1;
+        const categoria = p.tipo === 'polo' ? 'Camisas' : 'Pantalones';
+        html += `
+          <div class="revista-pagina" style="z-index:${revistaTotalPaginas - idx}" data-index="${idx}">
+            <div class="revista-producto">
+              <div class="revista-foto-wrap">
+                <img src="galeria/${p.archivo}" alt="${escHtml(p.nombre)}" loading="lazy" />
+              </div>
+              <div class="revista-info">
+                <div class="revista-categoria">${categoria}</div>
+                <div class="revista-nombre">${escHtml(p.nombre)}</div>
+                <div class="revista-tallas-label">Talla</div>
+                <div class="revista-tallas" data-idx="${idx}">
+                  ${p.tallas.map(t => `<button type="button" class="talla-btn" data-talla="${t}" onclick="revistaSeleccionarTalla(${idx}, '${t}', this)">${t}</button>`).join('')}
+                </div>
+                <a class="revista-cotizar btn-fashion" id="revistaLink${idx}" href="#" target="_blank" rel="noopener noreferrer">Pide tu cotización →</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      libro.innerHTML = html;
+
+      // Tilt 3D sutil al mover el mouse sobre la foto — efecto de profundidad
+      libro.querySelectorAll('.revista-foto-wrap').forEach(wrap => {
+        const img = wrap.querySelector('img');
+        wrap.addEventListener('mousemove', e => {
+          const rect = wrap.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          img.style.transform = `perspective(700px) rotateY(${x * 12}deg) rotateX(${y * -12}deg) scale(1.06)`;
+        });
+        wrap.addEventListener('mouseleave', () => { img.style.transform = ''; });
+      });
+
+      productosRevista.forEach((p, i) => actualizarLinkRevista(i + 1));
+      revistaActualizarControles();
+    }
+
+    function revistaSeleccionarTalla(idx, talla, btn) {
+      const contenedor = btn.closest('.revista-tallas');
+      contenedor.querySelectorAll('.talla-btn').forEach(b => b.classList.remove('activa'));
+      btn.classList.add('activa');
+      revistaSeleccion[idx] = talla;
+      actualizarLinkRevista(idx);
+    }
+
+    function actualizarLinkRevista(idx) {
+      const producto = productosRevista[idx - 1];
+      const talla = revistaSeleccion[idx];
+      const tallaTexto = talla ? `Talla ${talla}` : 'talla por confirmar';
+      const mensaje = `Hola WILMONK, quiero cotizar: ${producto.nombre} (${tallaTexto})`;
+      const link = document.getElementById(`revistaLink${idx}`);
+      if (link) link.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
+    }
+
+    function revistaIrA(nuevaPagina) {
+      nuevaPagina = Math.max(0, Math.min(revistaTotalPaginas - 1, nuevaPagina));
+      document.querySelectorAll('.revista-pagina').forEach(pg => {
+        const idx = parseInt(pg.dataset.index, 10);
+        pg.classList.toggle('volteada', idx < nuevaPagina);
+      });
+      revistaPaginaActual = nuevaPagina;
+      revistaActualizarControles();
+    }
+
+    function revistaActualizarControles() {
+      const contador = document.getElementById('revistaContador');
+      if (contador) contador.textContent = `${revistaPaginaActual + 1} / ${revistaTotalPaginas}`;
+      const prev = document.getElementById('revistaPrev');
+      const next = document.getElementById('revistaNext');
+      if (prev) prev.classList.toggle('deshabilitado', revistaPaginaActual === 0);
+      if (next) next.classList.toggle('deshabilitado', revistaPaginaActual === revistaTotalPaginas - 1);
+    }
+
+    document.getElementById('revistaPrev')?.addEventListener('click', () => revistaIrA(revistaPaginaActual - 1));
+    document.getElementById('revistaNext')?.addEventListener('click', () => revistaIrA(revistaPaginaActual + 1));
 
 
     /* ════ VIDEOS ═══════════════════════════════════════════════ */
