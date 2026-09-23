@@ -1331,111 +1331,33 @@
       transform: rotateY(-180deg);
     }
 
-    /* ── Portada estilo revista ────────────────────────────────── */
+    /* ── Portada estilo revista (foto real) ────────────────────── */
     .revista-portada {
-      background:
-        radial-gradient(ellipse at 50% 30%, rgba(204,27,27,0.25), transparent 60%),
-        var(--negro);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(16px, 4%, 28px);
+      background: var(--negro);
       cursor: pointer;
+      position: relative;
     }
 
-    .revista-portada-top {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-ui);
-      font-size: clamp(0.5rem, 1.6vw, 0.62rem);
-      letter-spacing: 0.15em;
-      color: var(--blanco-90);
-      line-height: 1.7;
+    .revista-portada-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .revista-portada-top .der { text-align: right; }
-    .revista-portada-top em { color: var(--rojo-vivo); font-style: normal; }
-
-    .revista-portada-marca {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 11vw, 4.2rem);
-      font-weight: 600;
+    .revista-portada-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 22px 16px 16px;
       text-align: center;
-      color: var(--rojo);
-      text-shadow: var(--rojo-glow), 0 0 80px rgba(204,27,27,0.5);
-      letter-spacing: 0.03em;
-      line-height: 0.95;
-    }
-
-    .revista-portada-centro {
-      text-align: center;
-    }
-
-    .revista-portada-wk {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 10vw, 3.6rem);
-      color: var(--rojo-vivo);
-      text-shadow: var(--rojo-glow);
-      line-height: 0.9;
-    }
-
-    .revista-portada-anio {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 6vw, 2.1rem);
-      color: var(--blanco);
-      margin-top: 4px;
-    }
-
-    .revista-portada-cta {
-      margin-top: 14px;
-      display: inline-block;
       font-family: var(--font-ui);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--dorado);
-      border-top: 1px solid var(--gris-medio);
-      padding-top: 10px;
-    }
-
-    .revista-portada-footer {
-      text-align: center;
-    }
-
-    .revista-portada-tagline {
-      font-family: var(--font-ui);
-      font-size: clamp(0.55rem, 1.7vw, 0.65rem);
-      letter-spacing: 0.15em;
-      color: var(--blanco-60);
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
-
-    .revista-barcode {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 2px;
-      height: 30px;
-      margin-bottom: 8px;
-    }
-
-    .revista-barcode span {
-      display: block;
-      width: 2px;
-      height: 100%;
-      background: var(--blanco-90);
-    }
-
-    .revista-barcode span:nth-child(3n) { width: 1px; height: 70%; }
-    .revista-barcode span:nth-child(5n) { width: 3px; }
-    .revista-barcode span:nth-child(7n) { height: 55%; }
-
-    .revista-portada-label {
-      font-family: var(--font-ui);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--gris-texto);
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
     }
 
     /* ── Páginas de producto ───────────────────────────────────── */
@@ -2114,25 +2036,10 @@
       const libro = document.getElementById('revistaLibro');
       if (!libro) return;
 
-      const barras = Array.from({ length: 40 }, () => '<span></span>').join('');
-
       let html = `
         <div class="revista-pagina revista-portada" style="z-index:${revistaTotalPaginas}" data-index="0" onclick="revistaIrA(1)">
-          <div class="revista-portada-top">
-            <div>WILMONK<br>NEW VISION.<br>BOLD FUTURE.<br>TIMELESS DESIGN.</div>
-            <div class="der">LIMITED<br>EDITION<br><em>2026</em><br>THE NEXT CHAPTER</div>
-          </div>
-          <div class="revista-portada-marca">WILMONK</div>
-          <div class="revista-portada-centro">
-            <div class="revista-portada-wk">WK</div>
-            <div class="revista-portada-anio">2026</div>
-            <div class="revista-portada-cta">Toca para hojear el catálogo →</div>
-          </div>
-          <div class="revista-portada-footer">
-            <div class="revista-portada-tagline">BEYOND TRENDS.<br>BEYOND LIMITS.<br>BEYOND TOMORROW.</div>
-            <div class="revista-barcode">${barras}</div>
-            <div class="revista-portada-label">WILMONK | NEW ERA</div>
-          </div>
+          <img class="revista-portada-img" src="revista/portada.jpg" alt="WILMONK — WK 2026" />
+          <div class="revista-portada-hint">Toca para hojear el catálogo →</div>
         </div>
       `;
 
