@@ -1964,7 +1964,7 @@
                 <div class="prenda-categoria">${escHtml(p.categoria || 'Prenda')}</div>
                 <div class="prenda-nombre">${escHtml(p.nombre)}</div>
                 <p class="prenda-desc">${escHtml(p.descripcion || '')}</p>
-                <div class="prenda-precio">${escHtml(p.precio)}</div>
+                ${p.precio ? `<div class="prenda-precio">${escHtml(p.precio)}</div>` : ''}
                 ${badge}
               </div>
             </div>

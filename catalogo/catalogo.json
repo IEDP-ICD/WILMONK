@@ -34,5 +34,21 @@
     "imagen": "conjunto-formal.jpg",
     "disponible": true,
     "destacada": false
+  },
+  {
+    "nombre": "Vestido Hueso",
+    "categoria": "Vestidos",
+    "descripcion": "Vestido midi de encaje color hueso, con mangas abullonadas y escote cuadrado.",
+    "imagen": "vestido-color-hueso.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Vestido Azul",
+    "categoria": "Vestidos",
+    "descripcion": "Vestido largo en tono azul cielo, con mangas de volante y falda amplia.",
+    "imagen": "vestido-azul.jpg",
+    "disponible": true,
+    "destacada": false
   }
 ]
