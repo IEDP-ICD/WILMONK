@@ -50,5 +50,21 @@
     "imagen": "vestido-azul.jpg",
     "disponible": true,
     "destacada": false
+  },
+  {
+    "nombre": "Polo Camisero",
+    "categoria": "Camisas",
+    "descripcion": "POLO CAMISERO en tela piqué suave y transpirable, con cuello y puños en contraste. Corte femenino entallado.",
+    "imagen": "polo-camisero.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Camisa Rayas",
+    "categoria": "Camisas",
+    "descripcion": "Camisas de manga corta en algodón fresco, con franjas bordadas en contraste y bolsillo frontal.",
+    "imagen": "camisa-blanca.jpg",
+    "disponible": true,
+    "destacada": false
   }
 ]
