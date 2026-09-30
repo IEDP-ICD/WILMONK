@@ -92,7 +92,7 @@
 
     /* ═══ Tipografía y comunes — tamaños grandes para lectura a distancia ═══ */
     .seccion-num {
-      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.3rem, 3vh, 1.7rem);
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.5rem, 3.5vh, 2rem);
       color: var(--dorado); letter-spacing: .18em; text-transform: uppercase;
       display: flex; align-items: center; gap: 12px;
     }
@@ -100,13 +100,13 @@
 
     .slide h2 {
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
-      font-size: clamp(3.3rem, 10.4vh, 6.4rem); line-height: 1.02; color: var(--blanco);
+      font-size: clamp(3.8rem, 11.6vh, 7.2rem); line-height: 1.02; color: var(--blanco);
       letter-spacing: .01em;
     }
     .slide h2 em { font-style: italic; font-weight: 400; color: var(--rojo); }
 
     .lead {
-      font-size: clamp(1.7rem, 4.2vh, 2.4rem); color: var(--blanco-90); line-height: 1.42; max-width: 980px; font-weight: 400;
+      font-size: clamp(2.05rem, 5vh, 2.9rem); color: var(--blanco-90); line-height: 1.4; max-width: 1080px; font-weight: 400;
     }
 
     .tarjeta {
@@ -116,10 +116,10 @@
     .tarjeta::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--rojo); }
     .tarjeta h3 {
       font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; letter-spacing: .01em;
-      font-size: clamp(1.9rem, 4.4vh, 2.5rem); color: var(--dorado);
+      font-size: clamp(2.2rem, 5vh, 2.9rem); color: var(--dorado);
       margin-bottom: clamp(.4rem, 1.1vh, .7rem); display: flex; align-items: center; gap: 10px;
     }
-    .tarjeta p { font-size: clamp(1.5rem, 3.5vh, 2rem); color: var(--blanco-90); line-height: 1.42; font-weight: 400; }
+    .tarjeta p { font-size: clamp(1.8rem, 4.1vh, 2.35rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
 
     /* ═══ Slide 1: portada ═══ */
     .portada { text-align: center; align-items: center; }
@@ -129,41 +129,41 @@
       box-shadow: 0 0 0 4px var(--gris-medio), var(--rojo-glow);
     }
     .label {
-      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.1rem, 2.3vh, 1.35rem); letter-spacing: .3em;
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.25rem, 2.7vh, 1.55rem); letter-spacing: .3em;
       text-transform: uppercase; color: var(--dorado); margin-bottom: clamp(.6rem, 1.4vh, 1rem);
       display: inline-flex; align-items: center; gap: 10px;
     }
     .portada h1 {
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
-      font-size: clamp(4.6rem, 15vh, 9rem); line-height: .96; color: var(--blanco); letter-spacing: .04em;
+      font-size: clamp(5.1rem, 16.5vh, 9.8rem); line-height: .96; color: var(--blanco); letter-spacing: .04em;
     }
     .portada h1 em { font-style: italic; font-weight: 400; color: var(--rojo); }
     .portada-linea { width: 90px; height: 1px; background: var(--dorado); margin: clamp(.9rem,1.9vh,1.3rem) auto; }
-    .portada .subt { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1.5rem, 3.3vh, 1.95rem); color: var(--blanco-90); max-width: 48rem; margin: 0 auto; font-weight: 400; }
+    .portada .subt { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1.75rem, 3.8vh, 2.3rem); color: var(--blanco-90); max-width: 52rem; margin: 0 auto; font-weight: 400; }
     .equipo-pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .equipo-pills span {
-      font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: clamp(1.1rem, 2.3vh, 1.3rem);
+      font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: clamp(1.25rem, 2.7vh, 1.5rem);
       color: var(--blanco-90); border: 1px solid var(--gris-medio); background: var(--blanco-10);
       padding: 10px 22px; border-radius: 999px;
     }
-    .portada-footer { font-family: 'Montserrat', sans-serif; font-size: clamp(1rem, 2.1vh, 1.15rem); color: var(--gris-texto); letter-spacing: .05em; }
+    .portada-footer { font-family: 'Montserrat', sans-serif; font-size: clamp(1.1rem, 2.4vh, 1.3rem); color: var(--gris-texto); letter-spacing: .05em; }
 
     /* ═══ Integrantes — 2 miembros, fotos grandes ═══ */
     .integrantes-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: minmax(0,1fr); gap: clamp(1rem, 2.4vw, 2rem); width: 100%; flex: 1 1 0; min-height: 0; }
     .miembro-card {
       background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); text-align: left;
-      overflow: hidden; display: flex; flex-direction: column; align-items: stretch; min-height: 0;
+      overflow: hidden; display: flex; flex-direction: row; align-items: stretch; min-height: 0;
     }
     .miembro-foto-wrap {
-      flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; background: var(--negro-suave);
+      flex: 0 0 42%; min-height: 0; position: relative; overflow: hidden; background: var(--negro-suave);
       display: flex; align-items: center; justify-content: center;
-      border-bottom: 2px solid var(--rojo);
+      border-right: 2px solid var(--rojo);
     }
     .miembro-foto { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .miembro-info { flex: 0 0 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(1rem, 2.4vh, 1.6rem) clamp(1.2rem, 2.4vw, 1.7rem); gap: 5px; }
-    .miembro-rol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.05rem, 2.2vh, 1.25rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
-    .miembro-nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2rem, 4.2vh, 2.7rem); letter-spacing: .01em; color: var(--blanco); line-height: 1.08; }
-    .miembro-desc { font-size: clamp(1.15rem, 2.4vh, 1.4rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+    .miembro-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(1rem, 2.4vh, 1.6rem) clamp(1.2rem, 2.4vw, 1.7rem); gap: 8px; }
+    .miembro-rol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.2rem, 2.5vh, 1.45rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
+    .miembro-nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2.3rem, 4.8vh, 3.1rem); letter-spacing: .01em; color: var(--blanco); line-height: 1.06; }
+    .miembro-desc { font-size: clamp(1.35rem, 2.8vh, 1.65rem); color: var(--blanco-90); line-height: 1.38; font-weight: 400; }
 
     /* Dos columnas — la columna crece para llenar todo el alto disponible de la diapositiva */
     .dos-col {
@@ -181,45 +181,45 @@
       background: linear-gradient(135deg, var(--rojo-suave), rgba(204,27,27,.03));
       border: 1px solid var(--rojo); border-radius: var(--radio);
       padding: clamp(.9rem, 2.3vh, 1.5rem) clamp(1.4rem, 2.9vw, 2rem);
-      font-size: clamp(1.4rem, 3.1vh, 1.85rem); color: var(--blanco); line-height: 1.36; font-weight: 400;
+      font-size: clamp(1.65rem, 3.6vh, 2.2rem); color: var(--blanco); line-height: 1.34; font-weight: 400;
     }
     .objetivo-general .etiqueta {
-      display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vh, 1.15rem); letter-spacing: .14em;
+      display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 2.3vh, 1.3rem); letter-spacing: .14em;
       text-transform: uppercase; color: var(--dorado); margin-bottom: 6px;
     }
 
     .lista-check { list-style: none; display: grid; gap: clamp(.4rem, 1.1vh, .65rem); }
     .lista-check li {
       display: flex; align-items: flex-start; gap: 14px; background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio);
-      padding: clamp(.55rem, 1.5vh, .85rem) clamp(1.05rem, 2vw, 1.4rem); font-size: clamp(1.25rem, 2.6vh, 1.5rem); color: var(--blanco-90); font-weight: 400; line-height: 1.28;
+      padding: clamp(.55rem, 1.5vh, .85rem) clamp(1.05rem, 2vw, 1.4rem); font-size: clamp(1.5rem, 3.1vh, 1.8rem); color: var(--blanco-90); font-weight: 400; line-height: 1.26;
     }
     .lista-check li::before { content: '—'; flex-shrink: 0; color: var(--rojo); font-weight: 700; font-size: 1.3rem; }
 
     .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--gris-medio); border-radius: var(--radio); overflow: hidden; }
     .mv-card { background: var(--carbon); padding: clamp(1.3rem, 3.2vh, 2.2rem) clamp(1.5rem, 3vw, 2.3rem); }
-    .mv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.9rem, 4vh, 2.5rem); color: var(--dorado); margin-bottom: clamp(.4rem, 1vh, .65rem); letter-spacing: .01em; }
-    .mv-card p { font-size: clamp(1.4rem, 2.9vh, 1.7rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+    .mv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(2.2rem, 4.6vh, 2.9rem); color: var(--dorado); margin-bottom: clamp(.4rem, 1vh, .65rem); letter-spacing: .01em; }
+    .mv-card p { font-size: clamp(1.6rem, 3.3vh, 1.95rem); color: var(--blanco-90); line-height: 1.38; font-weight: 400; }
 
     .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; }
     .tech-chips span {
-      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.15rem, 2.3vh, 1.35rem);
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.3rem, 2.6vh, 1.55rem);
       color: var(--blanco-90); border: 1px solid var(--gris-medio); background: var(--blanco-10);
       padding: clamp(.5rem, 1.3vh, .75rem) clamp(.95rem, 1.9vw, 1.4rem); border-radius: 999px; display: inline-flex; align-items: center; gap: 8px;
     }
 
     .segmento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.9rem, 2vw, 1.5rem); }
     .segmento-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.3rem, 3.1vh, 2.1rem); }
-    .segmento-card .icono { font-size: clamp(1.9rem, 3.8vh, 2.5rem); margin-bottom: clamp(.3rem, .8vh, .5rem); display: block; }
-    .segmento-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2rem); color: var(--dorado); margin-bottom: clamp(.3rem, .8vh, .5rem); letter-spacing: .01em; }
-    .segmento-card p { font-size: clamp(1.4rem, 2.9vh, 1.7rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+    .segmento-card .icono { font-size: clamp(2.2rem, 4.3vh, 2.85rem); margin-bottom: clamp(.3rem, .8vh, .5rem); display: block; }
+    .segmento-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.85rem, 3.6vh, 2.3rem); color: var(--dorado); margin-bottom: clamp(.3rem, .8vh, .5rem); letter-spacing: .01em; }
+    .segmento-card p { font-size: clamp(1.6rem, 3.3vh, 1.95rem); color: var(--blanco-90); line-height: 1.38; font-weight: 400; }
 
     .servicio-bloque { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.1rem, 2.6vh, 1.8rem) clamp(1.4rem, 2.8vw, 2rem); display: flex; gap: 18px; align-items: flex-start; }
     .servicio-bloque .icono {
-      font-size: clamp(1.8rem, 3.6vh, 2.4rem); flex-shrink: 0; width: clamp(52px, 8.4vh, 68px); height: clamp(52px, 8.4vh, 68px);
+      font-size: clamp(2.05rem, 4.1vh, 2.75rem); flex-shrink: 0; width: clamp(58px, 9.3vh, 76px); height: clamp(58px, 9.3vh, 76px);
       background: var(--rojo-suave); border: 1px solid var(--rojo); border-radius: 50%; display: flex; align-items: center; justify-content: center;
     }
-    .servicio-bloque h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2.1rem); color: var(--blanco); margin-bottom: 4px; letter-spacing: .01em; }
-    .servicio-bloque p { font-size: clamp(1.2rem, 2.5vh, 1.45rem); color: var(--blanco-90); line-height: 1.38; font-weight: 400; }
+    .servicio-bloque h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.85rem, 3.6vh, 2.4rem); color: var(--blanco); margin-bottom: 4px; letter-spacing: .01em; }
+    .servicio-bloque p { font-size: clamp(1.4rem, 2.9vh, 1.68rem); color: var(--blanco-90); line-height: 1.36; font-weight: 400; }
 
     /* Paleta de colores — muestras tipo etiqueta de tela */
     .paleta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(.6rem, 1.5vw, 1rem); width: 100%; flex: 1 1 0; min-height: 0; align-items: stretch; }
@@ -227,15 +227,15 @@
     .paleta-chip .swatch { flex: 1 1 auto; min-height: 0; position: relative; }
     .paleta-chip .swatch::after { content: ''; position: absolute; inset: 0; border-bottom: 2px solid var(--dorado); }
     .paleta-chip .info { flex-shrink: 0; background: var(--carbon); padding: clamp(.6rem, 1.4vh, 1rem) clamp(.5rem, 1.1vw, .7rem); text-align: center; }
-    .paleta-chip .nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.3rem, 2.6vh, 1.6rem); color: var(--blanco); letter-spacing: .01em; }
-    .paleta-chip .hex { font-family: 'Montserrat', sans-serif; font-size: clamp(.9rem, 1.7vh, 1.05rem); color: var(--gris-texto); margin-top: 4px; letter-spacing: .04em; }
+    .paleta-chip .nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.5rem, 3vh, 1.85rem); color: var(--blanco); letter-spacing: .01em; }
+    .paleta-chip .hex { font-family: 'Montserrat', sans-serif; font-size: clamp(1.02rem, 1.95vh, 1.2rem); color: var(--gris-texto); margin-top: 4px; letter-spacing: .04em; }
     .fuentes-row { display: flex; gap: clamp(.8rem, 2vw, 1.5rem); justify-content: center; flex-wrap: wrap; }
     .fuente-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(.9rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.8vw, 2rem); text-align: center; }
-    .fuente-card .muestra { font-size: clamp(1.8rem, 4.2vh, 2.7rem); margin-bottom: 4px; color: var(--dorado); }
+    .fuente-card .muestra { font-size: clamp(2.05rem, 4.8vh, 3.05rem); margin-bottom: 4px; color: var(--dorado); }
     .fuente-card .muestra.display { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; }
     .fuente-card .muestra.ui { font-family: 'Montserrat', sans-serif; font-weight: 600; }
     .fuente-card .muestra.cuerpo { font-family: 'EB Garamond', serif; font-weight: 400; color: var(--blanco-90); }
-    .fuente-card .etiqueta-fuente { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(.95rem, 1.9vh, 1.1rem); color: var(--gris-texto); letter-spacing: .08em; text-transform: uppercase; }
+    .fuente-card .etiqueta-fuente { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.08rem, 2.15vh, 1.25rem); color: var(--gris-texto); letter-spacing: .08em; text-transform: uppercase; }
 
     /* Informe de costos y gastos */
     .costos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(1.5rem, 3vw, 2.4rem); width: 100%; }
@@ -243,16 +243,16 @@
       display: flex; justify-content: space-between; align-items: baseline; gap: .8rem;
       border-bottom: 1px solid var(--gris-medio); padding: clamp(.36rem, .95vh, .58rem) 0;
     }
-    .costo-item .desc { font-size: clamp(1.4rem, 2.8vh, 1.75rem); color: var(--blanco-90); line-height: 1.28; text-align: left; font-weight: 400; }
-    .costo-item .valor { font-size: clamp(1.45rem, 2.85vh, 1.8rem); color: var(--dorado); font-weight: 600; white-space: nowrap; flex-shrink: 0; font-family: 'Montserrat', sans-serif; }
+    .costo-item .desc { font-size: clamp(1.75rem, 3.5vh, 2.15rem); color: var(--blanco-90); line-height: 1.24; text-align: left; font-weight: 400; }
+    .costo-item .valor { font-size: clamp(1.8rem, 3.55vh, 2.2rem); color: var(--dorado); font-weight: 600; white-space: nowrap; flex-shrink: 0; font-family: 'Montserrat', sans-serif; }
     .costos-total {
       display: flex; justify-content: space-between; align-items: center; width: 100%;
       background: linear-gradient(135deg, var(--rojo-suave), rgba(204,27,27,.03));
       border: 1px solid var(--rojo); border-radius: var(--radio); padding: clamp(.65rem, 1.7vh, 1.05rem) clamp(1.2rem, 2.3vw, 1.8rem);
       margin-top: clamp(.4rem, 1vh, .7rem);
     }
-    .costos-total .etiqueta { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.6vh, 1.65rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
-    .costos-total .monto { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(1.85rem, 4vh, 2.6rem); color: var(--blanco); letter-spacing: .01em; }
+    .costos-total .etiqueta { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.55rem, 3.1vh, 1.95rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
+    .costos-total .monto { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2.2rem, 4.7vh, 3.05rem); color: var(--blanco); letter-spacing: .01em; }
 
     /* Galería — grilla que llena todo el alto disponible, cada foto conserva su proporción real */
     .galeria-grid {
@@ -266,20 +266,20 @@
     /* Códigos QR */
     .qr-panel { display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: clamp(1.2rem, 3vw, 2.4rem) clamp(1rem, 3vh, 2rem); flex: 1 1 0; min-height: 0; }
     .qr-card { display: flex; flex-direction: column; align-items: center; gap: clamp(.6rem, 1.5vh, 1rem); }
-    .qr-card .marco { height: clamp(150px, 30vh, 350px); aspect-ratio: 1; background: var(--blanco); border-radius: var(--radio); padding: clamp(.8rem, 2vh, 1.3rem); display: flex; align-items: center; justify-content: center; box-shadow: var(--sombra-md); border: 3px solid var(--dorado); }
+    .qr-card .marco { height: clamp(170px, 29vh, 370px); aspect-ratio: 1; background: var(--blanco); border-radius: var(--radio); padding: clamp(.8rem, 2vh, 1.3rem); display: flex; align-items: center; justify-content: center; box-shadow: var(--sombra-md); border: 3px solid var(--dorado); }
     .qr-card .marco img { width: 100%; height: 100%; object-fit: contain; }
-    .qr-card span { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.15rem, 2.4vh, 1.4rem); letter-spacing: .06em; text-transform: uppercase; color: var(--blanco); text-align: center; }
+    .qr-card span { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.9vh, 1.75rem); letter-spacing: .06em; text-transform: uppercase; color: var(--blanco); text-align: center; }
 
     /* Proyección de venta — portafolio de marketing */
     .tarifas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.4vw, 1.8rem); width: 100%; flex: 1 1 0; min-height: 0; }
     .tarifa-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.1rem, 2.6vh, 1.8rem) clamp(1.3rem, 2.6vw, 1.9rem); display: flex; flex-direction: column; gap: clamp(.6rem, 1.4vh, .9rem); min-height: 0; }
     .tarifa-card .icono { font-size: clamp(1.9rem, 3.8vh, 2.5rem); }
-    .tarifa-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2.1rem); color: var(--dorado); letter-spacing: .01em; line-height: 1.05; }
+    .tarifa-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.85rem, 3.6vh, 2.4rem); color: var(--dorado); letter-spacing: .01em; line-height: 1.05; }
     .tarifa-lista { list-style: none; display: grid; gap: clamp(.5rem, 1.2vh, .8rem); flex: 1 1 auto; }
     .tarifa-lista li { border-top: 1px solid var(--gris-medio); padding-top: clamp(.5rem, 1.2vh, .8rem); }
-    .tarifa-lista .nombre { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.1rem, 2.2vh, 1.3rem); color: var(--blanco); display: block; }
-    .tarifa-lista .rango { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.18rem, 2.3vh, 1.4rem); color: var(--dorado); display: block; margin-top: 2px; }
-    .tarifa-lista .detalle { font-size: clamp(1rem, 2vh, 1.18rem); color: var(--gris-texto); line-height: 1.32; margin-top: 3px; }
+    .tarifa-lista .nombre { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.25rem, 2.5vh, 1.5rem); color: var(--blanco); display: block; }
+    .tarifa-lista .rango { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.35rem, 2.6vh, 1.6rem); color: var(--dorado); display: block; margin-top: 2px; }
+    .tarifa-lista .detalle { font-size: clamp(1.15rem, 2.3vh, 1.35rem); color: var(--gris-texto); line-height: 1.3; margin-top: 3px; }
 
     /* Cierre */
     .final { text-align: center; align-items: center; }
@@ -287,7 +287,7 @@
     .final h2 { color: var(--blanco); }
     .final-cta {
       display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; font-size: clamp(1.05rem, 2.2vh, 1.3rem); color: var(--negro);
+      letter-spacing: .08em; text-transform: uppercase; font-size: clamp(1.2rem, 2.5vh, 1.5rem); color: var(--negro);
       background: var(--dorado); padding: clamp(.85rem, 2.1vh, 1.2rem) clamp(1.6rem, 3.2vw, 2.3rem);
       border-radius: 999px; text-decoration: none; margin: 0 auto;
     }
@@ -317,113 +317,113 @@
     @media (max-width: 680px) {
       .integrantes-grid { grid-template-columns: 1fr; gap: .55rem; }
       .miembro-card { flex-direction: row; }
-      .miembro-foto-wrap { flex: 0 0 34%; border-bottom: none; border-right: 2px solid var(--rojo); }
-      .miembro-nombre { font-size: clamp(1.4rem, 3.6vh, 1.8rem); }
-      .miembro-rol { font-size: clamp(.8rem, 1.8vh, .95rem); }
-      .miembro-desc { font-size: clamp(.88rem, 1.95vh, 1.05rem); line-height: 1.32; }
-      .miembro-info { padding: .6rem .8rem; gap: 2px; }
+      .miembro-foto-wrap { flex: 0 0 38%; border-bottom: none; border-right: 2px solid var(--rojo); }
+      .miembro-nombre { font-size: clamp(1.6rem, 4vh, 2.05rem); }
+      .miembro-rol { font-size: clamp(.92rem, 2vh, 1.08rem); }
+      .miembro-desc { font-size: clamp(1rem, 2.2vh, 1.18rem); line-height: 1.3; }
+      .miembro-info { padding: .6rem .8rem; gap: 4px; }
 
       .dos-tarjetas, .mv-grid, .segmento-grid, .tarifas-grid { grid-template-columns: 1fr; }
       .mv-card { padding: .85rem 1.05rem; }
-      .mv-card h3 { font-size: clamp(1.35rem, 3.3vh, 1.65rem); margin-bottom: .3rem; }
-      .mv-card p { font-size: clamp(.92rem, 2.1vh, 1.1rem); line-height: 1.34; }
+      .mv-card h3 { font-size: clamp(1.5rem, 3.7vh, 1.85rem); margin-bottom: .3rem; }
+      .mv-card p { font-size: clamp(1.04rem, 2.35vh, 1.24rem); line-height: 1.32; }
       .tarjeta { padding: .65rem .9rem; }
-      .tarjeta h3 { font-size: clamp(1.25rem, 3vh, 1.5rem); margin-bottom: .25rem; }
-      .tarjeta p { font-size: clamp(.9rem, 2.1vh, 1.08rem); line-height: 1.32; }
+      .tarjeta h3 { font-size: clamp(1.4rem, 3.35vh, 1.68rem); margin-bottom: .25rem; }
+      .tarjeta p { font-size: clamp(1.02rem, 2.35vh, 1.22rem); line-height: 1.3; }
       .segmento-card { padding: .85rem 1.05rem; }
-      .segmento-card h3 { font-size: clamp(1.2rem, 2.9vh, 1.5rem); }
-      .segmento-card p { font-size: clamp(.92rem, 2.1vh, 1.1rem); line-height: 1.36; }
+      .segmento-card h3 { font-size: clamp(1.35rem, 3.25vh, 1.68rem); }
+      .segmento-card p { font-size: clamp(1.04rem, 2.35vh, 1.24rem); line-height: 1.34; }
       .servicio-bloque { padding: .65rem .9rem; gap: 12px; }
-      .servicio-bloque .icono { font-size: clamp(1.15rem, 2.6vh, 1.5rem); width: clamp(36px, 6vh, 48px); height: clamp(36px, 6vh, 48px); }
-      .servicio-bloque h3 { font-size: clamp(1.05rem, 2.4vh, 1.25rem); margin-bottom: 2px; }
-      .servicio-bloque p { font-size: clamp(.82rem, 1.9vh, .98rem); line-height: 1.32; }
+      .servicio-bloque .icono { font-size: clamp(1.3rem, 2.9vh, 1.68rem); width: clamp(40px, 6.7vh, 54px); height: clamp(40px, 6.7vh, 54px); }
+      .servicio-bloque h3 { font-size: clamp(1.18rem, 2.7vh, 1.4rem); margin-bottom: 2px; }
+      .servicio-bloque p { font-size: clamp(.92rem, 2.1vh, 1.1rem); line-height: 1.3; }
 
       /* En una sola columna, el texto conserva su alto natural y la imagen crece para llenar el resto */
-      .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .55rem; }
-      .dos-col .col-texto { gap: .45rem; }
-      .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 95px; }
+      .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .4rem; }
+      .dos-col .col-texto { gap: .32rem; }
+      .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 55px; }
       .dos-col .col-texto, .dos-col > .lead { flex: 0 0 auto; }
 
-      .lead { font-size: clamp(1rem, 2.4vh, 1.2rem); line-height: 1.36; }
-      .portada h1 { font-size: clamp(3.2rem, 16vw, 5.8rem); }
-      .portada .subt { font-size: clamp(1.05rem, 4.6vw, 1.4rem); }
-      .objetivo-general { padding: .55rem .8rem; font-size: clamp(.88rem, 2.05vh, 1.05rem); line-height: 1.28; }
-      .objetivo-general .etiqueta { font-size: .72rem; margin-bottom: 3px; }
+      .lead { font-size: clamp(1.05rem, 2.55vh, 1.25rem); line-height: 1.3; }
+      .portada h1 { font-size: clamp(3.5rem, 17.5vw, 6.3rem); }
+      .portada .subt { font-size: clamp(1.18rem, 5vw, 1.55rem); }
+      .objetivo-general { padding: .55rem .8rem; font-size: clamp(1.02rem, 2.35vh, 1.2rem); line-height: 1.26; }
+      .objetivo-general .etiqueta { font-size: .82rem; margin-bottom: 3px; }
       .lista-check { gap: .32rem; }
-      .lista-check li { padding: .4rem .7rem; font-size: clamp(.82rem, 1.95vh, .98rem); gap: 8px; line-height: 1.2; }
-      .tech-chips span { font-size: clamp(.82rem, 1.9vh, .98rem); padding: .42rem .85rem; }
+      .lista-check li { padding: .4rem .7rem; font-size: clamp(.95rem, 2.2vh, 1.12rem); gap: 8px; line-height: 1.18; }
+      .tech-chips span { font-size: clamp(.85rem, 2vh, 1rem); padding: .36rem .72rem; }
 
       .paleta-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, minmax(0,1fr)); gap: .5rem; }
-      .paleta-chip .nombre { font-size: 1.02rem; }
-      .paleta-chip .hex { font-size: .8rem; }
+      .paleta-chip .nombre { font-size: 1.18rem; }
+      .paleta-chip .hex { font-size: .92rem; }
       .fuentes-row { gap: .6rem; }
       .fuente-card { padding: .55rem .9rem; }
-      .fuente-card .muestra { font-size: 1.35rem; }
-      .fuente-card .etiqueta-fuente { font-size: .72rem; }
+      .fuente-card .muestra { font-size: 1.55rem; }
+      .fuente-card .etiqueta-fuente { font-size: .82rem; }
 
       .costos-grid { grid-template-columns: 1fr; gap: 0; }
-      .costo-item { padding: .2rem 0; }
-      .costo-item .desc { font-size: .82rem; }
-      .costo-item .valor { font-size: .85rem; }
+      .costo-item { padding: .22rem 0; }
+      .costo-item .desc { font-size: 1rem; }
+      .costo-item .valor { font-size: 1.03rem; }
       .costos-total { padding: .5rem .8rem; }
-      .costos-total .etiqueta { font-size: .85rem; }
-      .costos-total .monto { font-size: 1.35rem; }
+      .costos-total .etiqueta { font-size: 1.02rem; }
+      .costos-total .monto { font-size: 1.6rem; }
 
       .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, minmax(0,1fr)); gap: .6rem .5rem; }
 
-      .qr-panel { gap: .5rem; }
-      .qr-card .marco { height: clamp(70px, 13vh, 105px); }
-      .qr-card span { font-size: .78rem; }
+      .qr-panel { gap: .45rem; }
+      .qr-card .marco { height: clamp(85px, 15vh, 125px); }
+      .qr-card span { font-size: .82rem; }
 
-      .tarifas-grid { gap: .5rem; }
-      .tarifa-card { padding: .5rem .75rem; gap: .25rem; }
+      .tarifas-grid { gap: .4rem; }
+      .tarifa-card { padding: .4rem .65rem; gap: .18rem; }
       .tarifa-card .icono { font-size: 1.3rem; }
-      .tarifa-card h3 { font-size: 1.05rem; line-height: 1.15; }
-      .tarifa-lista { gap: .22rem; }
-      .tarifa-lista li { padding-top: .2rem; }
-      .tarifa-lista .nombre { font-size: .72rem; }
-      .tarifa-lista .rango { font-size: .78rem; }
-      .tarifa-lista .detalle { font-size: .64rem; }
+      .tarifa-card h3 { font-size: 1.05rem; line-height: 1.1; }
+      .tarifa-lista { gap: .16rem; }
+      .tarifa-lista li { padding-top: .16rem; }
+      .tarifa-lista .nombre { font-size: .74rem; }
+      .tarifa-lista .rango { font-size: .8rem; }
+      .tarifa-lista .detalle { font-size: .66rem; }
 
       .nav-puntos { max-width: 38vw; }
       .slide { padding: clamp(3.2rem, 7.6vh, 4.4rem) 1rem clamp(4.4rem, 11vh, 5.6rem); }
-      .slide h2 { font-size: clamp(1.9rem, 6vh, 2.8rem); }
+      .slide h2 { font-size: clamp(2.1rem, 6.6vh, 3.1rem); }
       .slide-inner { gap: clamp(.5rem, 1.5vh, 1rem); }
     }
 
     @media (max-height: 700px) {
       .slide { padding: clamp(2.8rem, 6.8vh, 3.8rem) 1.1rem clamp(3.8rem, 9vh, 4.8rem); }
       .slide-inner { gap: clamp(.4rem, 1.2vh, .7rem); }
-      .slide h2 { font-size: clamp(2.1rem, 6.8vh, 3rem); line-height: 1.04; }
-      .lead { font-size: clamp(1.15rem, 2.9vh, 1.4rem); line-height: 1.36; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .slide h2 { font-size: clamp(2.3rem, 7.4vh, 3.3rem); line-height: 1.04; }
+      .lead { font-size: clamp(1.3rem, 3.2vh, 1.55rem); line-height: 1.34; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
       .tarjeta { padding: .8rem 1.15rem; }
-      .tarjeta p { font-size: clamp(1.05rem, 2.5vh, 1.25rem); line-height: 1.34; }
-      .tarjeta h3 { font-size: clamp(1.25rem, 3vh, 1.5rem); margin-bottom: .35rem; }
+      .tarjeta p { font-size: clamp(1.18rem, 2.8vh, 1.4rem); line-height: 1.32; }
+      .tarjeta h3 { font-size: clamp(1.4rem, 3.3vh, 1.65rem); margin-bottom: .35rem; }
       .dos-tarjetas { gap: .6rem; }
       .integrantes-grid { gap: .5rem; }
-      .miembro-nombre { font-size: clamp(1.35rem, 3vh, 1.65rem); }
-      .miembro-rol { font-size: clamp(.82rem, 1.8vh, .95rem); }
+      .miembro-nombre { font-size: clamp(1.5rem, 3.3vh, 1.82rem); }
+      .miembro-rol { font-size: clamp(.92rem, 2vh, 1.05rem); }
       .miembro-desc { display: none; }
       .paleta-grid { gap: .4rem; }
       .paleta-chip .info { padding: .28rem .3rem; }
-      .paleta-chip .nombre { font-size: .88rem; }
-      .paleta-chip .hex { font-size: .74rem; margin-top: 1px; }
+      .paleta-chip .nombre { font-size: 1rem; }
+      .paleta-chip .hex { font-size: .84rem; margin-top: 1px; }
       .fuentes-row { gap: .5rem; }
       .fuente-card { padding: .5rem .75rem; }
-      .fuente-card .muestra { font-size: 1.25rem; margin-bottom: 1px; }
-      .fuente-card .etiqueta-fuente { font-size: .68rem; }
+      .fuente-card .muestra { font-size: 1.4rem; margin-bottom: 1px; }
+      .fuente-card .etiqueta-fuente { font-size: .78rem; }
       .portada-logo { width: 58px; height: 58px; margin-bottom: .35rem; }
-      .portada h1 { font-size: clamp(2.8rem, 9.5vh, 5rem); }
+      .portada h1 { font-size: clamp(3.05rem, 10.4vh, 5.5rem); }
       .portada-linea { margin: .5rem auto; }
-      .portada .subt { font-size: clamp(.95rem, 2.2vh, 1.1rem); }
-      .equipo-pills span { font-size: .82rem; padding: 6px 14px; }
-      .portada-footer { font-size: .72rem; }
-      .costo-item { padding: .16rem 0; }
-      .costo-item .desc { font-size: .76rem; }
-      .costo-item .valor { font-size: .78rem; }
+      .portada .subt { font-size: clamp(1.06rem, 2.5vh, 1.22rem); }
+      .equipo-pills span { font-size: .92rem; padding: 6px 14px; }
+      .portada-footer { font-size: .82rem; }
+      .costo-item { padding: .18rem 0; }
+      .costo-item .desc { font-size: .92rem; }
+      .costo-item .valor { font-size: .95rem; }
       .costos-total { padding: .4rem .7rem; }
-      .costos-total .monto { font-size: 1.2rem; }
-      .qr-card .marco { height: clamp(85px, 20vh, 150px); }
+      .costos-total .monto { font-size: 1.4rem; }
+      .qr-card .marco { height: clamp(115px, 26vh, 200px); }
     }
   </style>
 </head>
@@ -455,7 +455,7 @@
         <h2>Integrantes</h2>
         <div class="integrantes-grid">
           <div class="miembro-card">
-            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/Abigail.jpg" alt="Abigail Nicole Quinto Leal" /></div>
+            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/Abigail.jpg" alt="Abigail Nicole Quinto Leal" style="object-position: 50% 12%;" /></div>
             <div class="miembro-info">
               <div class="miembro-rol">Creadora de contenido</div>
               <div class="miembro-nombre">Abigail Nicole Quinto Leal</div>
@@ -463,7 +463,7 @@
             </div>
           </div>
           <div class="miembro-card">
-            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/ludy.jpg" alt="Luddy Rodríguez Chacón" /></div>
+            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/ludy.jpg" alt="Luddy Rodríguez Chacón" style="object-position: 22% 18%;" /></div>
             <div class="miembro-info">
               <div class="miembro-rol">Marketing y dirección creativa</div>
               <div class="miembro-nombre">Luddy Rodríguez Chacón</div>
@@ -599,18 +599,18 @@
       <div class="slide-inner">
         <p class="seccion-num">08 — Lo que ofrecemos</p>
         <h2>Descripción de <em>productos y servicios</em></h2>
-        <p class="lead" style="margin-bottom:.2rem;">Catálogo Web de Moda con pasarela de imágenes y formulario de cotizaciones, más material publicitario: fotos de catálogo y reels del proceso de confección. Escanea y síguenos:</p>
+        <p class="lead" style="margin-bottom:.2rem;">Catálogo web de moda, cotizaciones y reels del proceso de confección. Escanea y síguenos:</p>
         <div class="qr-panel">
           <div class="qr-card">
-            <div class="marco"><img src="img/qr-instagram.png" alt="Código QR al Instagram de WYLMONK" /></div>
-            <span>📸 Instagram</span>
+            <div class="marco"><img src="img/qr-web.jpg" alt="Código QR al sitio web de WYLMONK" /></div>
+            <span>🌐 Sitio web</span>
           </div>
           <div class="qr-card">
-            <div class="marco"><img src="img/qr-tiktok.png" alt="Código QR al TikTok de WYLMONK" /></div>
+            <div class="marco"><img src="img/qr-tiktok.jpg" alt="Código QR al TikTok de WYLMONK" /></div>
             <span>🎵 TikTok</span>
           </div>
           <div class="qr-card">
-            <div class="marco"><img src="img/qr-whatsapp.png" alt="Código QR al WhatsApp de WYLMONK" /></div>
+            <div class="marco"><img src="img/qr-whatsapp.jpg" alt="Código QR al WhatsApp de WYLMONK" /></div>
             <span>💬 WhatsApp</span>
           </div>
         </div>
