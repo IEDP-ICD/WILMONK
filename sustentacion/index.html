@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  SUSTENTACIÓN DEL PROYECTO — WYLMONK                          ║
+  ║  Página autocontenida, no enlazada desde el sitio principal.  ║
+  ║  Accesible solo escribiendo la URL: /sustentacion/            ║
+  ║  No aparece en el menú ni en buscadores (ver robots.txt).     ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sustentación · WYLMONK</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══ Paleta idéntica a la del sitio principal ═══ */
+    :root {
+      --negro:        #000000;
+      --negro-suave:  #0a0a0a;
+      --carbon:       #111111;
+      --gris-oscuro:  #1a1a1a;
+      --gris-medio:   #2a2a2a;
+      --gris-texto:   #9a9a9a;
+      --blanco:       #ffffff;
+      --blanco-90:    rgba(255,255,255,0.90);
+      --blanco-10:    rgba(255,255,255,0.08);
+      --rojo:         #cc1b1b;
+      --rojo-vivo:    #e82020;
+      --rojo-oscuro:  #8b0000;
+      --rojo-suave:   rgba(204,27,27,0.15);
+      --rojo-glow:    0 0 30px rgba(204,27,27,0.4);
+      --dorado:       #c9a84c;
+      --dorado-suave: rgba(201,168,76,0.15);
+      --radio: 2px;
+      --sombra-sm: 0 2px 16px rgba(0,0,0,0.8);
+      --sombra-md: 0 8px 40px rgba(0,0,0,0.9);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--negro);
+      font-family: 'EB Garamond', serif;
+      color: var(--blanco-90);
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ═══ Deck ═══ */
+    .deck { position: relative; width: 100vw; height: 100svh; height: 100vh; overflow: hidden; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: stretch; justify-content: center;
+      padding: clamp(3.4rem, 8.6vh, 5rem) clamp(1.3rem, 4vw, 4.2rem) clamp(4.2rem, 10vh, 5.6rem);
+      opacity: 0;
+      transform: translateX(70px) scale(0.96);
+      pointer-events: none;
+      transition: transform 0.7s cubic-bezier(0.34, 1.1, 0.64, 1), opacity 0.5s ease;
+      overflow: hidden;
+    }
+    .slide.activa { opacity: 1; transform: translateX(0) scale(1); pointer-events: auto; z-index: 2; }
+    .slide.saliendo-izq { transform: translateX(-80px) scale(0.96); opacity: 0; }
+    .slide.saliendo-der { transform: translateX(80px) scale(0.96); opacity: 0; }
+
+    .slide-inner {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 1620px; max-height: 100%;
+      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: clamp(.55rem, 1.7vh, 1.2rem);
+    }
+    .slide-inner > * {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+    .slide.activa .slide-inner > * { opacity: 1; transform: translateY(0); }
+    .slide.activa .slide-inner > *:nth-child(1) { transition-delay: 0.05s; }
+    .slide.activa .slide-inner > *:nth-child(2) { transition-delay: 0.14s; }
+    .slide.activa .slide-inner > *:nth-child(3) { transition-delay: 0.23s; }
+    .slide.activa .slide-inner > *:nth-child(4) { transition-delay: 0.32s; }
+    .slide.activa .slide-inner > *:nth-child(5) { transition-delay: 0.41s; }
+
+    /* ═══ Tipografía y comunes — tamaños grandes para lectura a distancia ═══ */
+    .seccion-num {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.3rem, 3vh, 1.7rem);
+      color: var(--dorado); letter-spacing: .18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .seccion-num::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--dorado); }
+
+    .slide h2 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(3.3rem, 10.4vh, 6.4rem); line-height: 1.02; color: var(--blanco);
+      letter-spacing: .01em;
+    }
+    .slide h2 em { font-style: italic; font-weight: 400; color: var(--rojo); }
+
+    .lead {
+      font-size: clamp(1.7rem, 4.2vh, 2.4rem); color: var(--blanco-90); line-height: 1.42; max-width: 980px; font-weight: 400;
+    }
+
+    .tarjeta {
+      background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio);
+      padding: clamp(1.2rem, 3vh, 2rem) clamp(1.4rem, 3vw, 2.2rem); position: relative; overflow: hidden;
+    }
+    .tarjeta::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--rojo); }
+    .tarjeta h3 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; letter-spacing: .01em;
+      font-size: clamp(1.9rem, 4.4vh, 2.5rem); color: var(--dorado);
+      margin-bottom: clamp(.4rem, 1.1vh, .7rem); display: flex; align-items: center; gap: 10px;
+    }
+    .tarjeta p { font-size: clamp(1.5rem, 3.5vh, 2rem); color: var(--blanco-90); line-height: 1.42; font-weight: 400; }
+
+    /* ═══ Slide 1: portada ═══ */
+    .portada { text-align: center; align-items: center; }
+    .portada-logo {
+      width: clamp(90px, 16vh, 150px); height: clamp(90px, 16vh, 150px); border-radius: 50%;
+      object-fit: contain; background: var(--carbon); padding: .7rem; margin: 0 auto clamp(.5rem, 1.3vh, .9rem);
+      box-shadow: 0 0 0 4px var(--gris-medio), var(--rojo-glow);
+    }
+    .label {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.1rem, 2.3vh, 1.35rem); letter-spacing: .3em;
+      text-transform: uppercase; color: var(--dorado); margin-bottom: clamp(.6rem, 1.4vh, 1rem);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .portada h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(4.6rem, 15vh, 9rem); line-height: .96; color: var(--blanco); letter-spacing: .04em;
+    }
+    .portada h1 em { font-style: italic; font-weight: 400; color: var(--rojo); }
+    .portada-linea { width: 90px; height: 1px; background: var(--dorado); margin: clamp(.9rem,1.9vh,1.3rem) auto; }
+    .portada .subt { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1.5rem, 3.3vh, 1.95rem); color: var(--blanco-90); max-width: 48rem; margin: 0 auto; font-weight: 400; }
+    .equipo-pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .equipo-pills span {
+      font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: clamp(1.1rem, 2.3vh, 1.3rem);
+      color: var(--blanco-90); border: 1px solid var(--gris-medio); background: var(--blanco-10);
+      padding: 10px 22px; border-radius: 999px;
+    }
+    .portada-footer { font-family: 'Montserrat', sans-serif; font-size: clamp(1rem, 2.1vh, 1.15rem); color: var(--gris-texto); letter-spacing: .05em; }
+
+    /* ═══ Integrantes — 2 miembros, fotos grandes ═══ */
+    .integrantes-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: minmax(0,1fr); gap: clamp(1rem, 2.4vw, 2rem); width: 100%; flex: 1 1 0; min-height: 0; }
+    .miembro-card {
+      background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); text-align: left;
+      overflow: hidden; display: flex; flex-direction: column; align-items: stretch; min-height: 0;
+    }
+    .miembro-foto-wrap {
+      flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; background: var(--negro-suave);
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 2px solid var(--rojo);
+    }
+    .miembro-foto { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .miembro-info { flex: 0 0 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(1rem, 2.4vh, 1.6rem) clamp(1.2rem, 2.4vw, 1.7rem); gap: 5px; }
+    .miembro-rol { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.05rem, 2.2vh, 1.25rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
+    .miembro-nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2rem, 4.2vh, 2.7rem); letter-spacing: .01em; color: var(--blanco); line-height: 1.08; }
+    .miembro-desc { font-size: clamp(1.15rem, 2.4vh, 1.4rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+
+    /* Dos columnas — la columna crece para llenar todo el alto disponible de la diapositiva */
+    .dos-col {
+      display: grid; grid-template-columns: 1fr .95fr; grid-template-rows: minmax(0, 1fr); gap: clamp(1.2rem, 3.4vw, 2.8rem); align-items: stretch;
+      width: 100%; flex: 1 1 0; min-height: 0;
+    }
+    .dos-col.invertido { grid-template-columns: .95fr 1fr; }
+    .dos-col img { width: 100%; height: 100%; object-fit: contain; background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); box-shadow: var(--sombra-md); }
+    .dos-col .col-texto { display: flex; flex-direction: column; justify-content: center; gap: clamp(.5rem, 1.3vh, .9rem); min-height: 0; }
+    .dos-col > .lead { display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+
+    .dos-tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.9rem, 2.1vw, 1.5rem); }
+
+    .objetivo-general {
+      background: linear-gradient(135deg, var(--rojo-suave), rgba(204,27,27,.03));
+      border: 1px solid var(--rojo); border-radius: var(--radio);
+      padding: clamp(.9rem, 2.3vh, 1.5rem) clamp(1.4rem, 2.9vw, 2rem);
+      font-size: clamp(1.4rem, 3.1vh, 1.85rem); color: var(--blanco); line-height: 1.36; font-weight: 400;
+    }
+    .objetivo-general .etiqueta {
+      display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vh, 1.15rem); letter-spacing: .14em;
+      text-transform: uppercase; color: var(--dorado); margin-bottom: 6px;
+    }
+
+    .lista-check { list-style: none; display: grid; gap: clamp(.4rem, 1.1vh, .65rem); }
+    .lista-check li {
+      display: flex; align-items: flex-start; gap: 14px; background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio);
+      padding: clamp(.55rem, 1.5vh, .85rem) clamp(1.05rem, 2vw, 1.4rem); font-size: clamp(1.25rem, 2.6vh, 1.5rem); color: var(--blanco-90); font-weight: 400; line-height: 1.28;
+    }
+    .lista-check li::before { content: '—'; flex-shrink: 0; color: var(--rojo); font-weight: 700; font-size: 1.3rem; }
+
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--gris-medio); border-radius: var(--radio); overflow: hidden; }
+    .mv-card { background: var(--carbon); padding: clamp(1.3rem, 3.2vh, 2.2rem) clamp(1.5rem, 3vw, 2.3rem); }
+    .mv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.9rem, 4vh, 2.5rem); color: var(--dorado); margin-bottom: clamp(.4rem, 1vh, .65rem); letter-spacing: .01em; }
+    .mv-card p { font-size: clamp(1.4rem, 2.9vh, 1.7rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tech-chips span {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.15rem, 2.3vh, 1.35rem);
+      color: var(--blanco-90); border: 1px solid var(--gris-medio); background: var(--blanco-10);
+      padding: clamp(.5rem, 1.3vh, .75rem) clamp(.95rem, 1.9vw, 1.4rem); border-radius: 999px; display: inline-flex; align-items: center; gap: 8px;
+    }
+
+    .segmento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.9rem, 2vw, 1.5rem); }
+    .segmento-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.3rem, 3.1vh, 2.1rem); }
+    .segmento-card .icono { font-size: clamp(1.9rem, 3.8vh, 2.5rem); margin-bottom: clamp(.3rem, .8vh, .5rem); display: block; }
+    .segmento-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2rem); color: var(--dorado); margin-bottom: clamp(.3rem, .8vh, .5rem); letter-spacing: .01em; }
+    .segmento-card p { font-size: clamp(1.4rem, 2.9vh, 1.7rem); color: var(--blanco-90); line-height: 1.4; font-weight: 400; }
+
+    .servicio-bloque { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.1rem, 2.6vh, 1.8rem) clamp(1.4rem, 2.8vw, 2rem); display: flex; gap: 18px; align-items: flex-start; }
+    .servicio-bloque .icono {
+      font-size: clamp(1.8rem, 3.6vh, 2.4rem); flex-shrink: 0; width: clamp(52px, 8.4vh, 68px); height: clamp(52px, 8.4vh, 68px);
+      background: var(--rojo-suave); border: 1px solid var(--rojo); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .servicio-bloque h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2.1rem); color: var(--blanco); margin-bottom: 4px; letter-spacing: .01em; }
+    .servicio-bloque p { font-size: clamp(1.2rem, 2.5vh, 1.45rem); color: var(--blanco-90); line-height: 1.38; font-weight: 400; }
+
+    /* Paleta de colores — muestras tipo etiqueta de tela */
+    .paleta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(.6rem, 1.5vw, 1rem); width: 100%; flex: 1 1 0; min-height: 0; align-items: stretch; }
+    .paleta-chip { display: flex; flex-direction: column; border: 1px solid var(--gris-medio); border-radius: var(--radio); overflow: hidden; background: var(--carbon); box-shadow: var(--sombra-sm); height: 100%; }
+    .paleta-chip .swatch { flex: 1 1 auto; min-height: 0; position: relative; }
+    .paleta-chip .swatch::after { content: ''; position: absolute; inset: 0; border-bottom: 2px solid var(--dorado); }
+    .paleta-chip .info { flex-shrink: 0; background: var(--carbon); padding: clamp(.6rem, 1.4vh, 1rem) clamp(.5rem, 1.1vw, .7rem); text-align: center; }
+    .paleta-chip .nombre { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.3rem, 2.6vh, 1.6rem); color: var(--blanco); letter-spacing: .01em; }
+    .paleta-chip .hex { font-family: 'Montserrat', sans-serif; font-size: clamp(.9rem, 1.7vh, 1.05rem); color: var(--gris-texto); margin-top: 4px; letter-spacing: .04em; }
+    .fuentes-row { display: flex; gap: clamp(.8rem, 2vw, 1.5rem); justify-content: center; flex-wrap: wrap; }
+    .fuente-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(.9rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.8vw, 2rem); text-align: center; }
+    .fuente-card .muestra { font-size: clamp(1.8rem, 4.2vh, 2.7rem); margin-bottom: 4px; color: var(--dorado); }
+    .fuente-card .muestra.display { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; }
+    .fuente-card .muestra.ui { font-family: 'Montserrat', sans-serif; font-weight: 600; }
+    .fuente-card .muestra.cuerpo { font-family: 'EB Garamond', serif; font-weight: 400; color: var(--blanco-90); }
+    .fuente-card .etiqueta-fuente { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(.95rem, 1.9vh, 1.1rem); color: var(--gris-texto); letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Informe de costos y gastos */
+    .costos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(1.5rem, 3vw, 2.4rem); width: 100%; }
+    .costo-item {
+      display: flex; justify-content: space-between; align-items: baseline; gap: .8rem;
+      border-bottom: 1px solid var(--gris-medio); padding: clamp(.36rem, .95vh, .58rem) 0;
+    }
+    .costo-item .desc { font-size: clamp(1.4rem, 2.8vh, 1.75rem); color: var(--blanco-90); line-height: 1.28; text-align: left; font-weight: 400; }
+    .costo-item .valor { font-size: clamp(1.45rem, 2.85vh, 1.8rem); color: var(--dorado); font-weight: 600; white-space: nowrap; flex-shrink: 0; font-family: 'Montserrat', sans-serif; }
+    .costos-total {
+      display: flex; justify-content: space-between; align-items: center; width: 100%;
+      background: linear-gradient(135deg, var(--rojo-suave), rgba(204,27,27,.03));
+      border: 1px solid var(--rojo); border-radius: var(--radio); padding: clamp(.65rem, 1.7vh, 1.05rem) clamp(1.2rem, 2.3vw, 1.8rem);
+      margin-top: clamp(.4rem, 1vh, .7rem);
+    }
+    .costos-total .etiqueta { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.6vh, 1.65rem); letter-spacing: .1em; text-transform: uppercase; color: var(--dorado); }
+    .costos-total .monto { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(1.85rem, 4vh, 2.6rem); color: var(--blanco); letter-spacing: .01em; }
+
+    /* Galería — grilla que llena todo el alto disponible, cada foto conserva su proporción real */
+    .galeria-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: clamp(1rem, 2.2vw, 1.6rem) clamp(.7rem, 1.8vh, 1.3rem); width: 100%; flex: 1 1 0; min-height: 0;
+      justify-items: center; align-items: stretch;
+    }
+    .galeria-card { width: auto; max-width: 100%; height: 100%; min-height: 0; overflow: hidden; border: 1px solid var(--gris-medio); border-radius: var(--radio); background: var(--carbon); box-shadow: var(--sombra-sm); }
+    .galeria-card img { height: 100%; width: auto; max-width: 100%; object-fit: contain; background: var(--negro-suave); }
+
+    /* Códigos QR */
+    .qr-panel { display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: clamp(1.2rem, 3vw, 2.4rem) clamp(1rem, 3vh, 2rem); flex: 1 1 0; min-height: 0; }
+    .qr-card { display: flex; flex-direction: column; align-items: center; gap: clamp(.6rem, 1.5vh, 1rem); }
+    .qr-card .marco { height: clamp(150px, 30vh, 350px); aspect-ratio: 1; background: var(--blanco); border-radius: var(--radio); padding: clamp(.8rem, 2vh, 1.3rem); display: flex; align-items: center; justify-content: center; box-shadow: var(--sombra-md); border: 3px solid var(--dorado); }
+    .qr-card .marco img { width: 100%; height: 100%; object-fit: contain; }
+    .qr-card span { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.15rem, 2.4vh, 1.4rem); letter-spacing: .06em; text-transform: uppercase; color: var(--blanco); text-align: center; }
+
+    /* Proyección de venta — portafolio de marketing */
+    .tarifas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.4vw, 1.8rem); width: 100%; flex: 1 1 0; min-height: 0; }
+    .tarifa-card { background: var(--carbon); border: 1px solid var(--gris-medio); border-radius: var(--radio); padding: clamp(1.1rem, 2.6vh, 1.8rem) clamp(1.3rem, 2.6vw, 1.9rem); display: flex; flex-direction: column; gap: clamp(.6rem, 1.4vh, .9rem); min-height: 0; }
+    .tarifa-card .icono { font-size: clamp(1.9rem, 3.8vh, 2.5rem); }
+    .tarifa-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 3.2vh, 2.1rem); color: var(--dorado); letter-spacing: .01em; line-height: 1.05; }
+    .tarifa-lista { list-style: none; display: grid; gap: clamp(.5rem, 1.2vh, .8rem); flex: 1 1 auto; }
+    .tarifa-lista li { border-top: 1px solid var(--gris-medio); padding-top: clamp(.5rem, 1.2vh, .8rem); }
+    .tarifa-lista .nombre { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(1.1rem, 2.2vh, 1.3rem); color: var(--blanco); display: block; }
+    .tarifa-lista .rango { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.18rem, 2.3vh, 1.4rem); color: var(--dorado); display: block; margin-top: 2px; }
+    .tarifa-lista .detalle { font-size: clamp(1rem, 2vh, 1.18rem); color: var(--gris-texto); line-height: 1.32; margin-top: 3px; }
+
+    /* Cierre */
+    .final { text-align: center; align-items: center; }
+    .final .logo-final { width: clamp(70px, 13vh, 110px); height: clamp(70px, 13vh, 110px); border-radius: 50%; object-fit: contain; background: var(--carbon); padding: .55rem; margin: 0 auto clamp(.5rem, 1.1vh, .9rem); box-shadow: var(--rojo-glow); }
+    .final h2 { color: var(--blanco); }
+    .final-cta {
+      display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; font-size: clamp(1.05rem, 2.2vh, 1.3rem); color: var(--negro);
+      background: var(--dorado); padding: clamp(.85rem, 2.1vh, 1.2rem) clamp(1.6rem, 3.2vw, 2.3rem);
+      border-radius: 999px; text-decoration: none; margin: 0 auto;
+    }
+
+    /* ═══ Controles de navegación ═══ */
+    .nav-controles {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      padding: clamp(.6rem, 1.6vh, 1rem) 1rem calc(clamp(.6rem, 1.6vh, 1rem) + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+    }
+    .nav-btn {
+      width: clamp(34px, 6vh, 42px); height: clamp(34px, 6vh, 42px); border-radius: 50%; border: 1px solid var(--dorado);
+      background: var(--carbon); color: var(--dorado);
+      font-size: clamp(.95rem, 2vh, 1.15rem); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.34,1.5,0.64,1), background .2s;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover { transform: scale(1.1); background: var(--rojo-suave); }
+    .nav-btn:active { transform: scale(0.92); }
+    .nav-btn.deshabilitado { opacity: 0.3; pointer-events: none; }
+    .nav-puntos { display: flex; gap: 5px; flex-wrap: wrap; max-width: 44vw; justify-content: center; }
+    .nav-punto { width: 7px; height: 7px; border-radius: 50%; background: var(--gris-medio); border: none; cursor: pointer; padding: 0; transition: transform 0.25s, background 0.25s; }
+    .nav-punto.activo { background: var(--dorado); transform: scale(1.5); }
+    .nav-contador { font-family: 'Montserrat', sans-serif; font-size: clamp(.62rem, 1.3vh, .74rem); color: var(--gris-texto); min-width: 42px; text-align: center; }
+
+    @media (max-width: 680px) {
+      .integrantes-grid { grid-template-columns: 1fr; gap: .55rem; }
+      .miembro-card { flex-direction: row; }
+      .miembro-foto-wrap { flex: 0 0 34%; border-bottom: none; border-right: 2px solid var(--rojo); }
+      .miembro-nombre { font-size: clamp(1.4rem, 3.6vh, 1.8rem); }
+      .miembro-rol { font-size: clamp(.8rem, 1.8vh, .95rem); }
+      .miembro-desc { font-size: clamp(.88rem, 1.95vh, 1.05rem); line-height: 1.32; }
+      .miembro-info { padding: .6rem .8rem; gap: 2px; }
+
+      .dos-tarjetas, .mv-grid, .segmento-grid, .tarifas-grid { grid-template-columns: 1fr; }
+      .mv-card { padding: .85rem 1.05rem; }
+      .mv-card h3 { font-size: clamp(1.35rem, 3.3vh, 1.65rem); margin-bottom: .3rem; }
+      .mv-card p { font-size: clamp(.92rem, 2.1vh, 1.1rem); line-height: 1.34; }
+      .tarjeta { padding: .65rem .9rem; }
+      .tarjeta h3 { font-size: clamp(1.25rem, 3vh, 1.5rem); margin-bottom: .25rem; }
+      .tarjeta p { font-size: clamp(.9rem, 2.1vh, 1.08rem); line-height: 1.32; }
+      .segmento-card { padding: .85rem 1.05rem; }
+      .segmento-card h3 { font-size: clamp(1.2rem, 2.9vh, 1.5rem); }
+      .segmento-card p { font-size: clamp(.92rem, 2.1vh, 1.1rem); line-height: 1.36; }
+      .servicio-bloque { padding: .65rem .9rem; gap: 12px; }
+      .servicio-bloque .icono { font-size: clamp(1.15rem, 2.6vh, 1.5rem); width: clamp(36px, 6vh, 48px); height: clamp(36px, 6vh, 48px); }
+      .servicio-bloque h3 { font-size: clamp(1.05rem, 2.4vh, 1.25rem); margin-bottom: 2px; }
+      .servicio-bloque p { font-size: clamp(.82rem, 1.9vh, .98rem); line-height: 1.32; }
+
+      /* En una sola columna, el texto conserva su alto natural y la imagen crece para llenar el resto */
+      .dos-col, .dos-col.invertido { display: flex; flex-direction: column; justify-content: center; gap: .55rem; }
+      .dos-col .col-texto { gap: .45rem; }
+      .dos-col img { width: 100%; height: auto; flex: 1 1 auto; min-height: 95px; }
+      .dos-col .col-texto, .dos-col > .lead { flex: 0 0 auto; }
+
+      .lead { font-size: clamp(1rem, 2.4vh, 1.2rem); line-height: 1.36; }
+      .portada h1 { font-size: clamp(3.2rem, 16vw, 5.8rem); }
+      .portada .subt { font-size: clamp(1.05rem, 4.6vw, 1.4rem); }
+      .objetivo-general { padding: .55rem .8rem; font-size: clamp(.88rem, 2.05vh, 1.05rem); line-height: 1.28; }
+      .objetivo-general .etiqueta { font-size: .72rem; margin-bottom: 3px; }
+      .lista-check { gap: .32rem; }
+      .lista-check li { padding: .4rem .7rem; font-size: clamp(.82rem, 1.95vh, .98rem); gap: 8px; line-height: 1.2; }
+      .tech-chips span { font-size: clamp(.82rem, 1.9vh, .98rem); padding: .42rem .85rem; }
+
+      .paleta-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, minmax(0,1fr)); gap: .5rem; }
+      .paleta-chip .nombre { font-size: 1.02rem; }
+      .paleta-chip .hex { font-size: .8rem; }
+      .fuentes-row { gap: .6rem; }
+      .fuente-card { padding: .55rem .9rem; }
+      .fuente-card .muestra { font-size: 1.35rem; }
+      .fuente-card .etiqueta-fuente { font-size: .72rem; }
+
+      .costos-grid { grid-template-columns: 1fr; gap: 0; }
+      .costo-item { padding: .2rem 0; }
+      .costo-item .desc { font-size: .82rem; }
+      .costo-item .valor { font-size: .85rem; }
+      .costos-total { padding: .5rem .8rem; }
+      .costos-total .etiqueta { font-size: .85rem; }
+      .costos-total .monto { font-size: 1.35rem; }
+
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, minmax(0,1fr)); gap: .6rem .5rem; }
+
+      .qr-panel { gap: .5rem; }
+      .qr-card .marco { height: clamp(70px, 13vh, 105px); }
+      .qr-card span { font-size: .78rem; }
+
+      .tarifas-grid { gap: .5rem; }
+      .tarifa-card { padding: .5rem .75rem; gap: .25rem; }
+      .tarifa-card .icono { font-size: 1.3rem; }
+      .tarifa-card h3 { font-size: 1.05rem; line-height: 1.15; }
+      .tarifa-lista { gap: .22rem; }
+      .tarifa-lista li { padding-top: .2rem; }
+      .tarifa-lista .nombre { font-size: .72rem; }
+      .tarifa-lista .rango { font-size: .78rem; }
+      .tarifa-lista .detalle { font-size: .64rem; }
+
+      .nav-puntos { max-width: 38vw; }
+      .slide { padding: clamp(3.2rem, 7.6vh, 4.4rem) 1rem clamp(4.4rem, 11vh, 5.6rem); }
+      .slide h2 { font-size: clamp(1.9rem, 6vh, 2.8rem); }
+      .slide-inner { gap: clamp(.5rem, 1.5vh, 1rem); }
+    }
+
+    @media (max-height: 700px) {
+      .slide { padding: clamp(2.8rem, 6.8vh, 3.8rem) 1.1rem clamp(3.8rem, 9vh, 4.8rem); }
+      .slide-inner { gap: clamp(.4rem, 1.2vh, .7rem); }
+      .slide h2 { font-size: clamp(2.1rem, 6.8vh, 3rem); line-height: 1.04; }
+      .lead { font-size: clamp(1.15rem, 2.9vh, 1.4rem); line-height: 1.36; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .tarjeta { padding: .8rem 1.15rem; }
+      .tarjeta p { font-size: clamp(1.05rem, 2.5vh, 1.25rem); line-height: 1.34; }
+      .tarjeta h3 { font-size: clamp(1.25rem, 3vh, 1.5rem); margin-bottom: .35rem; }
+      .dos-tarjetas { gap: .6rem; }
+      .integrantes-grid { gap: .5rem; }
+      .miembro-nombre { font-size: clamp(1.35rem, 3vh, 1.65rem); }
+      .miembro-rol { font-size: clamp(.82rem, 1.8vh, .95rem); }
+      .miembro-desc { display: none; }
+      .paleta-grid { gap: .4rem; }
+      .paleta-chip .info { padding: .28rem .3rem; }
+      .paleta-chip .nombre { font-size: .88rem; }
+      .paleta-chip .hex { font-size: .74rem; margin-top: 1px; }
+      .fuentes-row { gap: .5rem; }
+      .fuente-card { padding: .5rem .75rem; }
+      .fuente-card .muestra { font-size: 1.25rem; margin-bottom: 1px; }
+      .fuente-card .etiqueta-fuente { font-size: .68rem; }
+      .portada-logo { width: 58px; height: 58px; margin-bottom: .35rem; }
+      .portada h1 { font-size: clamp(2.8rem, 9.5vh, 5rem); }
+      .portada-linea { margin: .5rem auto; }
+      .portada .subt { font-size: clamp(.95rem, 2.2vh, 1.1rem); }
+      .equipo-pills span { font-size: .82rem; padding: 6px 14px; }
+      .portada-footer { font-size: .72rem; }
+      .costo-item { padding: .16rem 0; }
+      .costo-item .desc { font-size: .76rem; }
+      .costo-item .valor { font-size: .78rem; }
+      .costos-total { padding: .4rem .7rem; }
+      .costos-total .monto { font-size: 1.2rem; }
+      .qr-card .marco { height: clamp(85px, 20vh, 150px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="deck" id="deck">
+
+    <!-- ═══ 1. PORTADA ═══ -->
+    <section class="slide" data-bg="1">
+      <div class="slide-inner portada">
+        <img class="portada-logo" src="../img/logo.png" alt="WYLMONK" />
+        <p class="label">Sustentación de proyecto · SENA</p>
+        <h1>WYL<em>MONK</em></h1>
+        <div class="portada-linea"></div>
+        <p class="subt" style="margin-bottom:1.1rem;">Moda cómoda y atemporal — marketing digital, catálogo web y confección con identidad.</p>
+        <div class="equipo-pills">
+          <span>Abigail Nicole Quinto Leal</span>
+          <span>Luddy Rodríguez Chacón</span>
+        </div>
+        <p class="portada-footer" style="margin-top:1rem;">Instructora: Andrea Alvarado · Docente técnico: Víctor Manuel Escobar</p>
+      </div>
+    </section>
+
+    <!-- ═══ 2. INTEGRANTES ═══ -->
+    <section class="slide" data-bg="2">
+      <div class="slide-inner">
+        <p class="seccion-num">01 — El equipo</p>
+        <h2>Integrantes</h2>
+        <div class="integrantes-grid">
+          <div class="miembro-card">
+            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/Abigail.jpg" alt="Abigail Nicole Quinto Leal" /></div>
+            <div class="miembro-info">
+              <div class="miembro-rol">Creadora de contenido</div>
+              <div class="miembro-nombre">Abigail Nicole Quinto Leal</div>
+              <p class="miembro-desc">Diseña fotos y videos de la ropa para atraer la atención del público.</p>
+            </div>
+          </div>
+          <div class="miembro-card">
+            <div class="miembro-foto-wrap"><img class="miembro-foto" src="../equipo/ludy.jpg" alt="Luddy Rodríguez Chacón" /></div>
+            <div class="miembro-info">
+              <div class="miembro-rol">Marketing y dirección creativa</div>
+              <div class="miembro-nombre">Luddy Rodríguez Chacón</div>
+              <p class="miembro-desc">Encargada de la estrategia de marketing digital, las sesiones fotográficas y la narrativa visual de la marca.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. NECESIDAD E IDEA ═══ -->
+    <section class="slide" data-bg="3">
+      <div class="slide-inner">
+        <p class="seccion-num">02 — El punto de partida</p>
+        <h2>Descripción de la <em>necesidad e idea</em></h2>
+        <div class="dos-col">
+          <div class="col-texto">
+            <div class="tarjeta">
+              <h3>La necesidad</h3>
+              <p>Muchas personas buscan prendas que combinen estilo y comodidad, pero la mayoría de las opciones priorizan la moda sobre el confort, con materiales calurosos o poco prácticos.</p>
+            </div>
+            <div class="tarjeta">
+              <h3>La propuesta</h3>
+              <p>Una línea de ropa cómoda y versátil —camisas, blusas, camiseros y pijamas— en telas suaves y transpirables, con diseños sencillos y modernos para el día a día.</p>
+            </div>
+          </div>
+          <img src="../catalogo/vestido-azul.jpg" alt="Vestido de la colección WYLMONK" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. IDEA DE SOLUCIÓN INNOVADORA ═══ -->
+    <section class="slide" data-bg="4">
+      <div class="slide-inner">
+        <p class="seccion-num">03 — Nuestra propuesta</p>
+        <h2>Idea de solución <em>innovadora</em></h2>
+        <div class="dos-col invertido">
+          <img src="../revista/portada.jpg" alt="Portada editorial WYLMONK 2026" />
+          <div class="col-texto">
+            <p class="lead">Buscamos atraer a un consumidor consciente mediante una comunicación digital orgánica, con una experiencia de usuario tan ligera y fluida como la comodidad que representa la marca.</p>
+            <div class="objetivo-general" style="margin-bottom:0;">
+              <span class="etiqueta">Nuestro diferencial</span>
+              Transformamos el acto de vestir en una experiencia de bienestar y confianza: no solo vendemos ropa, conectamos con el consumidor.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. OBJETIVOS ═══ -->
+    <section class="slide" data-bg="5">
+      <div class="slide-inner">
+        <p class="seccion-num">04 — Hacia dónde vamos</p>
+        <h2>Objetivos</h2>
+        <div class="dos-col">
+          <div class="col-texto">
+            <div class="objetivo-general">
+              <span class="etiqueta">Objetivo general</span>
+              Impulsar el emprendimiento a través de las redes sociales y un catálogo de prendas cómodas que aporte estilo al uso diario.
+            </div>
+            <ul class="lista-check">
+              <li>Usar redes sociales para promocionar las prendas con contenido visual atractivo y editado</li>
+              <li>Fomentar el uso de ropa cómoda que permita sentirse bien en cualquier momento del día</li>
+            </ul>
+          </div>
+          <img src="../galeria/pantalon-azul.jpg" alt="Pantalón cargo azul de la colección" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 6. JUSTIFICACIÓN ═══ -->
+    <section class="slide" data-bg="6">
+      <div class="slide-inner">
+        <p class="seccion-num">05 — Por qué vale la pena</p>
+        <h2>Justificación</h2>
+        <div class="dos-col invertido">
+          <img src="../galeria/pantalon-verde.jpg" alt="Pantalón cargo verde de la colección" />
+          <div class="col-texto">
+            <div class="tarjeta">
+              <p>Posicionamos la marca desde el bienestar, destacando la calidad y frescura de los textiles para crear un estilo de vida aspiracional y accesible. El valor agregado está en combinar comodidad, estilo y cercanía digital.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. MISIÓN Y VISIÓN ═══ -->
+    <section class="slide" data-bg="7">
+      <div class="slide-inner">
+        <p class="seccion-num">06 — Nuestra identidad</p>
+        <h2>Misión & <em>Visión</em></h2>
+        <div class="mv-grid">
+          <div class="mv-card">
+            <h3>Misión</h3>
+            <p>Somos un equipo de marketing digital especializado en marcas de ropa cómoda y moderna. Creamos estrategias, contenido y campañas en redes sociales para aumentar la visibilidad de la marca y conectar de forma auténtica con los clientes.</p>
+          </div>
+          <div class="mv-card">
+            <h3>Visión</h3>
+            <p>Para 2026, ser un equipo capaz de desarrollar estrategias de marketing digital efectivas para marcas de ropa, aumentando su visibilidad, fortaleciendo la interacción con los clientes y creando campañas y contenido de impacto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. TECNOLOGÍAS ═══ -->
+    <section class="slide" data-bg="8">
+      <div class="slide-inner">
+        <p class="seccion-num">07 — Cómo lo haremos</p>
+        <h2>Tecnologías a <em>emplear</em></h2>
+        <div class="dos-col">
+          <div class="col-texto">
+            <p class="lead">Herramientas digitales de diseño, edición e inteligencia artificial para crear contenido, gestionar el catálogo y llegar a más personas en redes sociales.</p>
+            <div class="tech-chips">
+              <span>🤖 Claude</span>
+              <span>🐙 GitHub</span>
+              <span>🎥 Vidu AI</span>
+              <span>🖌️ Adobe Photoshop</span>
+              <span>🎞️ Adobe Premiere</span>
+              <span>✨ Adobe After Effects</span>
+              <span>🎨 Canva</span>
+              <span>🎵 TikTok</span>
+              <span>💬 WhatsApp</span>
+              <span>✂️ CapCut</span>
+            </div>
+          </div>
+          <img src="../galeria/polo-beige.jpg" alt="Polo beige de la colección WYLMONK" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. DESCRIPCIÓN DE PRODUCTOS/SERVICIOS ═══ -->
+    <section class="slide" data-bg="9">
+      <div class="slide-inner">
+        <p class="seccion-num">08 — Lo que ofrecemos</p>
+        <h2>Descripción de <em>productos y servicios</em></h2>
+        <p class="lead" style="margin-bottom:.2rem;">Catálogo Web de Moda con pasarela de imágenes y formulario de cotizaciones, más material publicitario: fotos de catálogo y reels del proceso de confección. Escanea y síguenos:</p>
+        <div class="qr-panel">
+          <div class="qr-card">
+            <div class="marco"><img src="img/qr-instagram.png" alt="Código QR al Instagram de WYLMONK" /></div>
+            <span>📸 Instagram</span>
+          </div>
+          <div class="qr-card">
+            <div class="marco"><img src="img/qr-tiktok.png" alt="Código QR al TikTok de WYLMONK" /></div>
+            <span>🎵 TikTok</span>
+          </div>
+          <div class="qr-card">
+            <div class="marco"><img src="img/qr-whatsapp.png" alt="Código QR al WhatsApp de WYLMONK" /></div>
+            <span>💬 WhatsApp</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 10. IMAGEN CORPORATIVA ═══ -->
+    <section class="slide" data-bg="10">
+      <div class="slide-inner">
+        <p class="seccion-num">09 — Nuestra marca</p>
+        <h2>Imagen <em>Corporativa</em></h2>
+        <div class="dos-col">
+          <p class="lead">
+            El logo integra el monograma "WK" con un emblema de lobo, símbolo de fuerza, carácter y autenticidad. Su diseño en blanco y negro, limpio y minimalista, transmite elegancia, precisión y una identidad moderna enfocada en la calidad.
+          </p>
+          <img src="../img/logo.png" alt="Logo WYLMONK — monograma WK con lobo" style="object-fit:contain; background:var(--carbon); padding:2.2rem;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 11. ETIQUETA Y EMPAQUE ═══ -->
+    <section class="slide" data-bg="11">
+      <div class="slide-inner">
+        <p class="seccion-num">10 — Presentación del producto</p>
+        <h2>Etiqueta y <em>Empaque</em></h2>
+        <div class="dos-col invertido">
+          <img src="../galeria/pantalon-cafe.jpg" alt="Pantalón cargo café de la colección" />
+          <div class="col-texto">
+            <div class="dos-tarjetas" style="grid-template-columns:1fr;">
+              <div class="servicio-bloque">
+                <span class="icono">🏷️</span>
+                <div><h3>Etiqueta</h3><p>Etiquetas de tela satinada cosidas a las prendas, con hang tag de cartón y logo.</p></div>
+              </div>
+              <div class="servicio-bloque">
+                <span class="icono">🛍️</span>
+                <div><h3>Empaque</h3><p>Bolsas ecológicas reutilizables de papel Kraft, personalizadas con la marca.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 12. SEGMENTO OBJETIVO ═══ -->
+    <section class="slide" data-bg="12">
+      <div class="slide-inner">
+        <p class="seccion-num">11 — A quién llegamos</p>
+        <h2>Segmento <em>Objetivo</em></h2>
+        <div class="segmento-grid">
+          <div class="segmento-card">
+            <span class="icono">📍</span>
+            <h3>Ubicación</h3>
+            <p>Cúcuta, Norte de Santander — barrio La Divina Pastora.</p>
+          </div>
+          <div class="segmento-card">
+            <span class="icono">🎯</span>
+            <h3>Perfil</h3>
+            <p>Niños, mujeres y hombres de 5 a 60 años que buscan confección a medida, uniformes o prendas de diseño exclusivo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 13. VENTAJAS COMPETITIVAS ═══ -->
+    <section class="slide" data-bg="13">
+      <div class="slide-inner">
+        <p class="seccion-num">12 — Lo que nos distingue</p>
+        <h2>Ventajas <em>Competitivas</em></h2>
+        <div class="dos-col">
+          <p class="lead">
+            A través del sitio web, los usuarios pueden solicitar cotizaciones personalizadas de forma fácil y directa. El catálogo permite ver cada prenda en alta resolución, destacando acabados y materiales que refuerzan la calidad y el diseño exclusivo de la marca.
+          </p>
+          <img src="../galeria/polo-blanco.jpg" alt="Polo blanco de la colección WYLMONK" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 14. PROCESO PRODUCTIVO ═══ -->
+    <section class="slide" data-bg="14">
+      <div class="slide-inner">
+        <p class="seccion-num">13 — Cómo lo hacemos</p>
+        <h2>Proceso <em>Productivo</em></h2>
+        <div class="dos-col invertido">
+          <img src="../galeria/pantalon-beige.jpg" alt="Pantalón cargo beige de la colección" />
+          <ul class="lista-check">
+            <li>Sesión fotográfica de la colección de ropa</li>
+            <li>Retoque digital de fotografías en Adobe Photoshop</li>
+            <li>Programación HTML/CSS de la interfaz del catálogo</li>
+            <li>Integración del botón de compra y cotización directa</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 15. PALETA DE COLORES ═══ -->
+    <section class="slide" data-bg="15">
+      <div class="slide-inner">
+        <p class="seccion-num">14 — Nuestra identidad visual</p>
+        <h2>Paleta de <em>colores</em></h2>
+        <div class="paleta-grid">
+          <div class="paleta-chip"><div class="swatch" style="background:#000000;"></div><div class="info"><div class="nombre">Negro</div><div class="hex">#000000</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#111111;"></div><div class="info"><div class="nombre">Carbón</div><div class="hex">#111111</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#cc1b1b;"></div><div class="info"><div class="nombre">Rojo</div><div class="hex">#CC1B1B</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#8b0000;"></div><div class="info"><div class="nombre">Rojo oscuro</div><div class="hex">#8B0000</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#c9a84c;"></div><div class="info"><div class="nombre">Dorado</div><div class="hex">#C9A84C</div></div></div>
+          <div class="paleta-chip"><div class="swatch" style="background:#ffffff;"></div><div class="info"><div class="nombre">Blanco</div><div class="hex">#FFFFFF</div></div></div>
+        </div>
+        <div class="fuentes-row">
+          <div class="fuente-card"><div class="muestra display">WylmonK</div><div class="etiqueta-fuente">Cormorant Garamond · títulos</div></div>
+          <div class="fuente-card"><div class="muestra ui">Moda 2026</div><div class="etiqueta-fuente">Montserrat · UI</div></div>
+          <div class="fuente-card"><div class="muestra cuerpo">Estilo atemporal</div><div class="etiqueta-fuente">EB Garamond · cuerpo</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 16. DETRÁS DE CÁMARAS ═══ -->
+    <section class="slide" data-bg="16">
+      <div class="slide-inner">
+        <p class="seccion-num">15 — Cómo lo producimos</p>
+        <h2>Detrás de <em>cámaras</em></h2>
+        <div class="galeria-grid">
+          <div class="galeria-card"><img src="img/bts-01-presentador.jpg" alt="Grabación frente a pantalla verde" /></div>
+          <div class="galeria-card"><img src="img/bts-02-microfono.jpg" alt="Ajustando el micrófono antes de grabar" /></div>
+          <div class="galeria-card"><img src="img/bts-03-equipo.jpg" alt="Equipo preparando la toma con pantalla verde" /></div>
+          <div class="galeria-card"><img src="img/bts-04-camara.jpg" alt="Pantalla de la cámara Sony ZV-E10 enfocando el set" /></div>
+          <div class="galeria-card"><img src="img/bts-05-revision.jpg" alt="Revisando la grabación en la cámara" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 17. PROYECCIONES DE VENTA DEL PORTAFOLIO DE MARKETING ═══ -->
+    <section class="slide" data-bg="17">
+      <div class="slide-inner">
+        <p class="seccion-num">16 — Portafolio de marketing</p>
+        <h2>Proyecciones de <em>venta</em></h2>
+        <p class="lead" style="margin-bottom:.2rem;">Estudio de mercado de tarifas de servicios digitales (COP), como base para cotizar futuros clientes:</p>
+        <div class="tarifas-grid">
+          <div class="tarifa-card">
+            <span class="icono">💻</span>
+            <h3>Diseño web para negocios y locales</h3>
+            <ul class="tarifa-lista">
+              <li><span class="nombre">Landing page básica</span><span class="rango">$300.000 – $1.000.000</span></li>
+              <li><span class="nombre">Sitio corporativo / catálogo</span><span class="rango">$1.000.000 – $3.000.000</span></li>
+              <li><span class="nombre">Tienda en línea (e-commerce)</span><span class="rango">$1.500.000 – $5.000.000+</span></li>
+            </ul>
+          </div>
+          <div class="tarifa-card">
+            <span class="icono">📱</span>
+            <h3>Creadores e influencers (TikTok e Instagram)</h3>
+            <ul class="tarifa-lista">
+              <li><span class="nombre">Nano (1K–10K seguidores)</span><span class="rango">$50.000 – $200.000 por publicación</span></li>
+              <li><span class="nombre">Micro (10K–50K seguidores)</span><span class="rango">$250.000 – $800.000</span></li>
+              <li><span class="nombre">Macro (50K–500K+ seguidores)</span><span class="rango">$1.000.000 – $5.000.000+</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 18. INFORME DE COSTOS ═══ -->
+    <section class="slide" data-bg="18">
+      <div class="slide-inner">
+        <p class="seccion-num">17 — Presupuesto del proyecto</p>
+        <h2>Informe de <em>costos y gastos</em></h2>
+        <div class="costos-grid">
+          <div class="costo-item"><span class="desc">Cámara Sony ZV-E10</span><span class="valor">$3.375.962</span></div>
+          <div class="costo-item"><span class="desc">Tarjeta SD ADATA 128GB (x2)</span><span class="valor">$211.098</span></div>
+          <div class="costo-item"><span class="desc">Trípode con cabezal fluido</span><span class="valor">$1.277.837</span></div>
+          <div class="costo-item"><span class="desc">Batería recargable de la cámara</span><span class="valor">$365.811</span></div>
+          <div class="costo-item"><span class="desc">Cargador de batería para cámara</span><span class="valor">$472.469</span></div>
+          <div class="costo-item"><span class="desc">Grabadora Tascam DR-05XP</span><span class="valor">$1.072.498</span></div>
+          <div class="costo-item"><span class="desc">Memoria para grabadora de audio</span><span class="valor">$76.923</span></div>
+          <div class="costo-item"><span class="desc">Micrófonos de solapa inalámbricos</span><span class="valor">$1.430.473</span></div>
+          <div class="costo-item"><span class="desc">Audífonos Behringer BH470</span><span class="valor">$327.012</span></div>
+          <div class="costo-item"><span class="desc">Cargador de pilas</span><span class="valor">$69.606</span></div>
+          <div class="costo-item"><span class="desc">Set de pilas recargables AA/AAA</span><span class="valor">$152.541</span></div>
+          <div class="costo-item"><span class="desc">Micrófono Boom</span><span class="valor">$1.296.443</span></div>
+          <div class="costo-item"><span class="desc">Portátil HP + licencia</span><span class="valor">$2.615.330</span></div>
+          <div class="costo-item"><span class="desc">Disco duro externo 2TB</span><span class="valor">$393.852</span></div>
+        </div>
+        <div class="costos-total">
+          <span class="etiqueta">Total invertido</span>
+          <span class="monto">$13.137.855</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 19. CIERRE ═══ -->
+    <section class="slide" data-bg="19">
+      <div class="slide-inner final">
+        <img class="logo-final" src="../img/logo.png" alt="WYLMONK" />
+        <p class="label">Gracias por su atención</p>
+        <h2>¡Gracias!</h2>
+        <p class="subt" style="margin-bottom:1.1rem;">WYLMONK — moda cómoda y atemporal.<br>Técnica en Integración de Contenidos Digitales · SENA, IEDP La Divina Pastora.</p>
+        <a class="final-cta" href="https://instagram.com/wilmonk.co" target="_blank" rel="noopener noreferrer">📸 @wilmonk.co</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══ Controles de navegación ═══ -->
+  <div class="nav-controles">
+    <button class="nav-btn" id="btnPrev" aria-label="Diapositiva anterior">‹</button>
+    <div class="nav-puntos" id="navPuntos"></div>
+    <button class="nav-btn" id="btnNext" aria-label="Siguiente diapositiva">›</button>
+    <span class="nav-contador" id="navContador">1 / 19</span>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    let actual = 0;
+
+    const puntosWrap = document.getElementById('navPuntos');
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'nav-punto' + (i === 0 ? ' activo' : '');
+      btn.setAttribute('aria-label', `Ir a la diapositiva ${i + 1}`);
+      btn.addEventListener('click', () => irA(i));
+      puntosWrap.appendChild(btn);
+    });
+    const puntos = Array.from(document.querySelectorAll('.nav-punto'));
+
+    function actualizarUI() {
+      puntos.forEach((p, i) => p.classList.toggle('activo', i === actual));
+      document.getElementById('navContador').textContent = `${actual + 1} / ${total}`;
+      document.getElementById('btnPrev').classList.toggle('deshabilitado', actual === 0);
+      document.getElementById('btnNext').classList.toggle('deshabilitado', actual === total - 1);
+    }
+
+    function irA(indice) {
+      indice = Math.max(0, Math.min(total - 1, indice));
+      if (indice === actual) return;
+      const direccion = indice > actual ? 1 : -1;
+
+      slides.forEach((s, i) => {
+        s.classList.remove('activa', 'saliendo-izq', 'saliendo-der');
+        if (i === actual) {
+          s.classList.add(direccion > 0 ? 'saliendo-izq' : 'saliendo-der');
+        }
+      });
+
+      actual = indice;
+      slides[actual].classList.add('activa');
+      actualizarUI();
+    }
+
+    slides[0].classList.add('activa');
+    actualizarUI();
+
+    document.getElementById('btnPrev').addEventListener('click', () => irA(actual - 1));
+    document.getElementById('btnNext').addEventListener('click', () => irA(actual + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') irA(actual + 1);
+      if (e.key === 'ArrowLeft') irA(actual - 1);
+    });
+
+    /* Navegación táctil (swipe horizontal) */
+    let touchStartX = 0, touchStartY = 0;
+    const deck = document.getElementById('deck');
+
+    deck.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    deck.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) irA(actual + 1); else irA(actual - 1);
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
