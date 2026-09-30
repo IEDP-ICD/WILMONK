@@ -410,42 +410,6 @@
       );
     }
 
-    /* Texto superpuesto en la foto (estilo portada revista) */
-    .hero-foto-overlay {
-      position: absolute;
-      bottom: 3rem;
-      right: 2.5rem;
-      text-align: right;
-      z-index: 2;
-    }
-
-    .hero-foto-overlay .overlay-titulo {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      font-weight: 700;
-      color: var(--blanco);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-foto-overlay .overlay-anio {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 7rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--rojo);
-      line-height: 0.85;
-    }
-
-    .hero-foto-overlay .overlay-tagline {
-      font-family: var(--font-ui);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--blanco-60);
-      margin-top: 1rem;
-    }
-
     /* Logos superpuestos en la foto (arriba derecha) */
     .hero-logos {
       position: absolute;
@@ -458,28 +422,28 @@
     }
 
     .hero-logo-img {
-      width: 70px;
-      height: 70px;
+      width: 110px;
+      height: 110px;
       object-fit: contain;
       background: rgba(0,0,0,0.5);
       backdrop-filter: blur(8px);
-      padding: 6px;
+      padding: 8px;
       border: 1px solid rgba(255,255,255,0.15);
     }
 
     .hero-logo-sep {
       width: 1px;
-      height: 40px;
+      height: 60px;
       background: rgba(255,255,255,0.2);
     }
 
     .hero-logo-iedp {
-      width: 55px;
-      height: 55px;
+      width: 85px;
+      height: 85px;
       object-fit: contain;
       background: rgba(0,0,0,0.5);
       backdrop-filter: blur(8px);
-      padding: 5px;
+      padding: 6px;
       border: 1px solid rgba(255,255,255,0.1);
       opacity: 0.75;
     }
@@ -1260,9 +1224,9 @@
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-foto { height: 60vh; }
       .hero-texto { padding: 4rem 2rem; }
-      .hero-logos { top: 1.2rem; right: 1.2rem; gap: .5rem; }
-      .hero-logo-img { width: 48px; height: 48px; }
-      .hero-logo-iedp { width: 38px; height: 38px; }
+      .hero-logos { top: 1.2rem; right: 1.2rem; gap: .6rem; }
+      .hero-logo-img { width: 68px; height: 68px; }
+      .hero-logo-iedp { width: 52px; height: 52px; }
       .hero-logo-sep { height: 28px; }
       .seccion-header { grid-template-columns: 1fr; gap: 1rem; }
       .seccion-desc { border-left: none; padding-left: 0; border-top: 1px solid var(--gris-medio); padding-top: 1rem; }
@@ -1641,13 +1605,10 @@
         <img class="hero-logo-iedp" src="img/sena.png" alt="SENA" />
       </div>
 
-      <!-- Texto editorial superpuesto -->
-      <div class="hero-foto-overlay">
-        <div class="overlay-titulo">WK</div>
-        <div class="overlay-anio">2026</div>
-        <div class="overlay-titulo">WYLMONK</div>
-        <div class="overlay-tagline">BEYOND TRENDS · BEYOND LIMITS · BEYOND TOMORROW</div>
-      </div>
+      <!-- Sin texto superpuesto: la foto de portada ya es la
+           portada de revista WILMONK con toda su tipografía propia
+           (título, "wk 2026" y el eslogan "Beyond Trends..."),
+           así que un overlay de texto aquí quedaría duplicado. -->
     </div>
 
   </section>
