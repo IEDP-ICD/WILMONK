@@ -11,14 +11,15 @@
   ║  ├── img/                                                    ║
   ║  │   ├── logo.png              ← logo de WYLMONK             ║
   ║  │   ├── escudo.png            ← escudo IEDP                 ║
+  ║  │   ├── sena.png              ← logo del SENA                ║
   ║  │   └── portada.jpg           ← foto de portada (opcional)  ║
   ║  ├── catalogo/                                               ║
   ║  │   ├── catalogo.json         ← prendas con foto y precio   ║
   ║  │   └── (fotos de prendas)                                  ║
   ║  ├── videos/                                                 ║
   ║  │   └── videos.json           ← videos de moda y pasarela   ║
-  ║  ├── galeria/                                                ║
-  ║  │   ├── galeria.json          ← fotos editoriales           ║
+  ║  ├── detras/                                                 ║
+  ║  │   ├── detras.json           ← fotos detrás de cámaras     ║
   ║  │   └── (fotos JPG/PNG)                                     ║
   ║  ├── equipo/                                                 ║
   ║  │   ├── equipo.json           ← misión, visión, integrantes ║
@@ -378,8 +379,11 @@
       overflow: hidden;
     }
 
-    /* La foto de portada llena todo el panel */
-    .hero-foto img {
+    /* La foto de portada llena todo el panel
+       (selector por ID: más específico que .hero-foto img para no
+       afectar a los logos superpuestos, que son otras <img> dentro
+       del mismo contenedor) */
+    #heroImg {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -753,9 +757,10 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       GALERÍA EDITORIAL
+       DETRÁS DE CÁMARAS
+       (reutiliza el estilo editorial que antes usaba Galería Visual)
        ═══════════════════════════════════════════════════════════ */
-    #galeria-grid {
+    #bts-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2px;
@@ -1234,8 +1239,10 @@
       max-width: 1300px;
       margin: 0 auto;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      row-gap: .5rem;
     }
 
     .footer-copy {
@@ -1253,11 +1260,15 @@
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-foto { height: 60vh; }
       .hero-texto { padding: 4rem 2rem; }
+      .hero-logos { top: 1.2rem; right: 1.2rem; gap: .5rem; }
+      .hero-logo-img { width: 48px; height: 48px; }
+      .hero-logo-iedp { width: 38px; height: 38px; }
+      .hero-logo-sep { height: 28px; }
       .seccion-header { grid-template-columns: 1fr; gap: 1rem; }
       .seccion-desc { border-left: none; padding-left: 0; border-top: 1px solid var(--gris-medio); padding-top: 1rem; }
       #catalogo-grid { grid-template-columns: 1fr 1fr; }
       .prenda-card.destacada { grid-row: span 1; }
-      #galeria-grid { grid-template-columns: repeat(2, 1fr); }
+      #bts-grid { grid-template-columns: repeat(2, 1fr); }
       #equipo-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; text-align: center; }
       .footer-logos { justify-content: center; }
@@ -1272,7 +1283,7 @@
       .seccion { padding: 5rem 0; }
       .mv-grid { grid-template-columns: 1fr; }
       #catalogo-grid { grid-template-columns: 1fr; background: none; gap: 2px; }
-      #galeria-grid { grid-template-columns: repeat(2,1fr); }
+      #bts-grid { grid-template-columns: repeat(2,1fr); }
       #videos-grid { grid-template-columns: 1fr; background: none; }
       * { cursor: auto; }
       .cursor { display: none; }
@@ -1286,20 +1297,25 @@
        ═══════════════════════════════════════════════════════════ */
     .revista-wrap {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 2.5rem;
-      padding: 1rem 1.5rem 0;
+      justify-content: center;
+      gap: clamp(.6rem, 3vw, 2.5rem);
+      padding: 1rem 1rem 1.5rem;
     }
 
     .revista-viewport {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
       perspective: 2400px;
       perspective-origin: 50% 50%;
     }
 
     .revista-libro {
       position: relative;
-      width: min(400px, 86vw);
+      width: min(400px, calc(100vw - 150px));
       aspect-ratio: 2 / 3;
       transform-style: preserve-3d;
       filter: drop-shadow(0 40px 60px rgba(0,0,0,0.7));
@@ -1478,13 +1494,7 @@
       padding: 12px 20px;
     }
 
-    /* ── Controles de navegación ───────────────────────────────── */
-    .revista-controles {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
+    /* ── Controles de navegación — a los lados del libro ───────── */
     .revista-btn {
       width: 44px;
       height: 44px;
@@ -1498,6 +1508,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .revista-btn:hover:not(.deshabilitado) {
@@ -1522,8 +1533,16 @@
     }
 
     @media (max-width: 768px) {
-      .revista-libro { width: min(320px, 80vw); }
-      .revista-wrap { padding-top: 0; }
+      .revista-wrap { gap: .4rem; padding: .5rem .3rem 1rem; }
+      .revista-libro { width: min(320px, calc(100vw - 108px)); }
+      .revista-btn { width: 38px; height: 38px; font-size: 1.1rem; }
+      .revista-contador { font-size: 0.62rem; min-width: 50px; }
+    }
+
+    @media (max-width: 400px) {
+      .revista-wrap { gap: .25rem; }
+      .revista-libro { width: min(300px, calc(100vw - 92px)); }
+      .revista-btn { width: 32px; height: 32px; font-size: 1rem; }
     }
   </style>
 </head>
@@ -1570,8 +1589,8 @@
     <ul class="nav-links">
       <li><a href="#mision">Identidad</a></li>
       <li><a href="#catalogo">Colección</a></li>
-      <li><a href="#galeria">Editorial</a></li>
       <li><a href="#revista">Revista</a></li>
+      <li><a href="#camaras">Cámaras</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#nosotros">Nosotras</a></li>
       <li><a href="#redes" class="nav-cta">Contacto</a></li>
@@ -1617,6 +1636,9 @@
         <div class="hero-logo-sep"></div>
         <!-- ARCHIVO: img/escudo.png -->
         <img class="hero-logo-iedp" src="img/escudo.png" alt="IEDP" />
+        <div class="hero-logo-sep"></div>
+        <!-- ARCHIVO: img/sena.png -->
+        <img class="hero-logo-iedp" src="img/sena.png" alt="SENA" />
       </div>
 
       <!-- Texto editorial superpuesto -->
@@ -1690,29 +1712,75 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════
-       GALERÍA EDITORIAL
-       Archivo: galeria/galeria.json
+       VIDEOS DE MODA — todos son de TikTok, no se maneja YouTube
+       ni otra red en este proyecto.
+       Archivo: videos/videos.json
        Formato:
        [
          {
-           "nombre": "Sesión editorial verano",
-           "categoria": "Editorial",
-           "archivo": "editorial-verano.jpg"
-         },
-         ...
+           "titulo": "Pasarela colección 2026",
+           "categoria": "Pasarela",
+           "descripcion": "Presentación completa de nuestra primera colección",
+           "tiktok_id": "7123456789012345678"
+         }
        ]
+       El tiktok_id es la parte numérica de la URL del video:
+       tiktok.com/@usuario/video/ESTE_NÚMERO
+       Al cargar la página, el código consulta la API pública oEmbed
+       de TikTok con ese ID y reemplaza la miniatura y la descripción
+       por las reales del video. Si TikTok no responde (sin internet,
+       video privado o eliminado) se usan "titulo" y "descripcion".
        ═══════════════════════════════════════════════════════════ -->
-  <section class="seccion seccion-negra" id="galeria">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       REVISTA INTERACTIVA — catálogo tipo flipbook
+       Los productos están definidos en el array `productos` dentro
+       del bloque de JavaScript (buscar "REVISTA INTERACTIVA"). Usa las
+       fotos que ya están en catalogo/. Para agregar una prenda nueva,
+       añade un objeto al array con: tipo, nombre, archivo, tallas.
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="seccion seccion-negra" id="revista">
     <div class="contenedor">
       <div class="seccion-header">
         <div class="seccion-meta">
-          <div class="seccion-num">03 — EDITORIAL</div>
-          <div class="seccion-titulo">Galería<br><em>Visual</em></div>
+          <div class="seccion-num">03 — CATÁLOGO DIGITAL</div>
+          <div class="seccion-titulo">Revista<br><em>Interactiva</em></div>
         </div>
-        <p class="seccion-desc">Sesiones fotográficas, pasarelas y momentos detrás de cámara</p>
+        <p class="seccion-desc">Hojea la colección 2026 como una revista y pide tu cotización por WhatsApp</p>
       </div>
     </div>
-    <div id="galeria-grid">
+
+    <div class="revista-wrap">
+      <button class="revista-btn" id="revistaPrev" aria-label="Página anterior">‹</button>
+      <div class="revista-viewport">
+        <div class="revista-libro" id="revistaLibro"></div>
+        <span class="revista-contador" id="revistaContador">1 / 13</span>
+      </div>
+      <button class="revista-btn" id="revistaNext" aria-label="Página siguiente">›</button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       DETRÁS DE CÁMARAS
+       Archivo: detras/detras.json
+       Formato:
+       [
+         { "nombre": "Preparando el set", "categoria": "Producción", "archivo": "bts-01.jpg" },
+         ...
+       ]
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="seccion" id="camaras">
+    <div class="contenedor">
+      <div class="seccion-header">
+        <div class="seccion-meta">
+          <div class="seccion-num">04 — PRODUCCIÓN</div>
+          <div class="seccion-titulo">Detrás de<br><em>Cámaras</em></div>
+        </div>
+        <p class="seccion-desc">Así se vive el proceso creativo detrás de cada sesión y cada prenda</p>
+      </div>
+    </div>
+    <div id="bts-grid">
       <div class="skeleton" style="height:380px"></div>
       <div class="skeleton" style="height:380px"></div>
       <div class="skeleton" style="height:380px"></div>
@@ -1741,41 +1809,11 @@
        por las reales del video. Si TikTok no responde (sin internet,
        video privado o eliminado) se usan "titulo" y "descripcion".
        ═══════════════════════════════════════════════════════════ -->
-
-  <!-- ═══════════════════════════════════════════════════════════
-       REVISTA INTERACTIVA — catálogo tipo flipbook
-       Los productos están definidos en el array `productos` dentro
-       del bloque de JavaScript (buscar "REVISTA INTERACTIVA"). Usa las
-       fotos que ya están en galeria/. Para agregar una prenda nueva,
-       añade un objeto al array con: tipo, nombre, archivo, tallas.
-       ═══════════════════════════════════════════════════════════ -->
-  <section class="seccion seccion-negra" id="revista">
+  <section class="seccion seccion-negra" id="videos">
     <div class="contenedor">
       <div class="seccion-header">
         <div class="seccion-meta">
-          <div class="seccion-num">04 — CATÁLOGO DIGITAL</div>
-          <div class="seccion-titulo">Revista<br><em>Interactiva</em></div>
-        </div>
-        <p class="seccion-desc">Hojea la colección 2026 como una revista y pide tu cotización por WhatsApp</p>
-      </div>
-    </div>
-
-    <div class="revista-wrap">
-      <div class="revista-viewport">
-        <div class="revista-libro" id="revistaLibro"></div>
-      </div>
-      <div class="revista-controles">
-        <button class="revista-btn" id="revistaPrev" aria-label="Página anterior">‹</button>
-        <span class="revista-contador" id="revistaContador">1 / 13</span>
-        <button class="revista-btn" id="revistaNext" aria-label="Página siguiente">›</button>
-      </div>
-    </div>
-  </section>
-  <section class="seccion seccion-carbon" id="videos">
-    <div class="contenedor">
-      <div class="seccion-header">
-        <div class="seccion-meta">
-          <div class="seccion-num">04 — CONTENIDO</div>
+          <div class="seccion-num">05 — CONTENIDO</div>
           <div class="seccion-titulo">Videos<br><em>&amp; Moda</em></div>
         </div>
         <p class="seccion-desc">Pasarelas, procesos de confección y contenido exclusivo de la marca</p>
@@ -1796,7 +1834,7 @@
     <div class="contenedor">
       <div class="seccion-header">
         <div class="seccion-meta">
-          <div class="seccion-num">05 — EL EQUIPO</div>
+          <div class="seccion-num">06 — EL EQUIPO</div>
           <div class="seccion-titulo">Quiénes<br><em>Somos</em></div>
         </div>
         <p class="seccion-desc" id="sobre-nosotros-texto">Cargando...</p>
@@ -1817,7 +1855,7 @@
     <div class="contenedor">
       <div class="seccion-header">
         <div class="seccion-meta">
-          <div class="seccion-num">06 — CONTACTO</div>
+          <div class="seccion-num">07 — CONTACTO</div>
           <div class="seccion-titulo">Síguenos<br><em>Online</em></div>
         </div>
         <p class="seccion-desc">Encuentra nuestra colección y contenido exclusivo en todas las plataformas</p>
@@ -1854,7 +1892,7 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 WYLMONK — ALL RIGHTS RESERVED</span>
-      <span class="footer-copy">IEDP · TÉCNICA EN INTEGRACIÓN DE CONTENIDOS DIGITALES</span>
+      <span class="footer-copy">INSTITUCIÓN EDUCATIVA LA DIVINA PASTORA · TÉCNICA EN INTEGRACIÓN DE CONTENIDOS DIGITALES</span>
     </div>
   </footer>
 
@@ -1889,7 +1927,7 @@
       Promise.allSettled([
         cargarEquipoYMision(),
         cargarCatalogo(),
-        cargarGaleria(),
+        cargarDetrasCamaras(),
         cargarVideos(),
         cargarRedes()
       ]);
@@ -2000,22 +2038,22 @@
     }
 
 
-    /* ════ GALERÍA ══════════════════════════════════════════════ */
-    async function cargarGaleria() {
-      const grid = document.getElementById('galeria-grid');
+    /* ════ DETRÁS DE CÁMARAS ══════════════════════════════════════ */
+    async function cargarDetrasCamaras() {
+      const grid = document.getElementById('bts-grid');
       try {
-        const resp = await fetch('galeria/galeria.json');
+        const resp = await fetch('detras/detras.json');
         if (!resp.ok) throw new Error();
         const fotos = await resp.json();
 
         if (!fotos.length) {
-          grid.innerHTML = mensajeVacio('📷', 'SIN GALERÍA', 'Agrega fotos en galeria/galeria.json');
+          grid.innerHTML = mensajeVacio('📷', 'SIN FOTOS', 'Agrega fotos en detras/detras.json');
           return;
         }
 
         grid.innerHTML = fotos.map(f => `
-          <div class="foto-card" onclick="abrirLightbox('galeria/${f.archivo}', '${escHtml(f.nombre)}')">
-            <img src="galeria/${f.archivo}" alt="${escHtml(f.nombre)}" loading="lazy" />
+          <div class="foto-card" onclick="abrirLightbox('detras/${f.archivo}', '${escHtml(f.nombre)}')">
+            <img src="detras/${f.archivo}" alt="${escHtml(f.nombre)}" loading="lazy" />
             <div class="foto-info-overlay">
               <div class="foto-nombre">${escHtml(f.nombre)}</div>
               ${f.categoria ? `<div class="foto-cat">${escHtml(f.categoria)}</div>` : ''}
@@ -2024,7 +2062,7 @@
         `).join('');
 
       } catch {
-        grid.innerHTML = mensajeVacio('📷', 'SIN GALERÍA', 'Crea galeria/galeria.json');
+        grid.innerHTML = mensajeVacio('📷', 'SIN FOTOS', 'Crea detras/detras.json');
       }
     }
 
@@ -2032,7 +2070,7 @@
     /* ════ REVISTA INTERACTIVA ══════════════════════════════════
        Catálogo tipo flipbook. Cada objeto del array es una prenda:
        tipo: 'polo' o 'pantalon' (define el texto de categoría)
-       nombre, archivo (imagen dentro de galeria/), tallas
+       nombre, archivo (imagen dentro de catalogo/), tallas
        ═══════════════════════════════════════════════════════════ */
     const WHATSAPP_NUMERO = '573001234567';
 
@@ -2083,7 +2121,7 @@
             <div class="revista-cara revista-cara-frente">
               <div class="revista-producto">
                 <div class="revista-foto-wrap">
-                  <img src="galeria/${p.archivo}" alt="${escHtml(p.nombre)}" loading="lazy" />
+                  <img src="catalogo/${p.archivo}" alt="${escHtml(p.nombre)}" loading="lazy" />
                 </div>
                 <div class="revista-info">
                   <div class="revista-categoria">${categoria}</div>

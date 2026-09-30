@@ -1,47 +1,11 @@
 [
   {
-    "nombre": "Vestido Editorial",
-    "categoria": "Vestidos",
-    "descripcion": "Vestido de corte midi con silueta estructurada, hombros marcados y tela fluida. Pieza estrella de la colección 2026.",
-    "precio": "$95.000",
-    "imagen": "vestido-editorial.jpg",
-    "disponible": true,
-    "destacada": true
-  },
-  {
-    "nombre": "Blusa Atemporal",
-    "categoria": "Blusas",
-    "descripcion": "Blusa de manga larga con escote en V y detalles en los puños. Confeccionada en tela satinada.",
-    "precio": "$55.000",
-    "imagen": "blusa-atemporal.jpg",
-    "disponible": true,
-    "destacada": false
-  },
-  {
-    "nombre": "Falda Asimétrica",
-    "categoria": "Faldas",
-    "descripcion": "Falda de corte asimétrico con vuelo lateral. Disponible en negro y vino.",
-    "precio": "$60.000",
-    "imagen": "falda-asimetrica.jpg",
-    "disponible": true,
-    "destacada": false
-  },
-  {
-    "nombre": "Conjunto Formal",
-    "categoria": "Conjuntos",
-    "descripcion": "Conjunto de blazer y pantalón de tiro alto con corte recto. Estilo ejecutivo con personalidad.",
-    "precio": "$130.000",
-    "imagen": "conjunto-formal.jpg",
-    "disponible": true,
-    "destacada": false
-  },
-  {
     "nombre": "Vestido Hueso",
     "categoria": "Vestidos",
     "descripcion": "Vestido midi de encaje color hueso, con mangas abullonadas y escote cuadrado.",
     "imagen": "vestido-color-hueso.jpg",
     "disponible": true,
-    "destacada": false
+    "destacada": true
   },
   {
     "nombre": "Vestido Azul",
@@ -64,6 +28,102 @@
     "categoria": "Camisas",
     "descripcion": "Camisas de manga corta en algodón fresco, con franjas bordadas en contraste y bolsillo frontal.",
     "imagen": "camisa-blanca.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Blanco",
+    "categoria": "Camisas",
+    "descripcion": "Polo en piqué suave de corte clásico, ideal para combinar con cualquier look del día a día.",
+    "imagen": "polo-blanco.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Azul Navy",
+    "categoria": "Camisas",
+    "descripcion": "Polo en tono azul navy con cuello tipo camisero y caída cómoda.",
+    "imagen": "polo-azul.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Negro",
+    "categoria": "Camisas",
+    "descripcion": "Polo negro versátil, básico esencial del guardarropa con acabado premium.",
+    "imagen": "polo-negro.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Rojo",
+    "categoria": "Camisas",
+    "descripcion": "Polo en rojo intenso, corte relajado con detalles en el cuello y los puños.",
+    "imagen": "polo-rojo.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Beige",
+    "categoria": "Camisas",
+    "descripcion": "Polo en tono beige neutro, pensado para un estilo relajado y atemporal.",
+    "imagen": "polo-beige.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Polo Vino",
+    "categoria": "Camisas",
+    "descripcion": "Polo en color vino profundo, con tela transpirable y corte entallado.",
+    "imagen": "polo-vino.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Negro",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en negro con bolsillos funcionales y corte cómodo para el día a día.",
+    "imagen": "pantalon-negro.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Azul",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en azul, con bolsillos laterales y tela resistente.",
+    "imagen": "pantalon-azul.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Verde",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en verde militar, versátil y cómodo para cualquier ocasión casual.",
+    "imagen": "pantalon-verde.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Café",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en café, con corte relajado y bolsillos multifuncionales.",
+    "imagen": "pantalon-cafe.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Blanco",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en blanco, ideal para looks frescos y luminosos.",
+    "imagen": "pantalon-blanco.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Pantalón Cargo Beige",
+    "categoria": "Pantalones",
+    "descripcion": "Pantalón cargo en beige, corte cómodo con bolsillos laterales funcionales.",
+    "imagen": "pantalon-beige.jpg",
     "disponible": true,
     "destacada": false
   }

@@ -1,0 +1,7 @@
+[
+  { "nombre": "Grabación frente a pantalla verde", "categoria": "Producción", "archivo": "bts-01-presentador.jpg" },
+  { "nombre": "Ajustando el micrófono antes de grabar", "categoria": "Producción", "archivo": "bts-02-microfono.jpg" },
+  { "nombre": "Equipo preparando la toma con pantalla verde", "categoria": "Producción", "archivo": "bts-03-equipo.jpg" },
+  { "nombre": "Enfocando el set con la cámara", "categoria": "Producción", "archivo": "bts-04-camara.jpg" },
+  { "nombre": "Revisando la grabación en la cámara", "categoria": "Producción", "archivo": "bts-05-revision.jpg" }
+]
