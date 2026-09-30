@@ -266,7 +266,9 @@
     /* Códigos QR */
     .qr-panel { display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: clamp(1.2rem, 3vw, 2.4rem) clamp(1rem, 3vh, 2rem); flex: 1 1 0; min-height: 0; }
     .qr-card { display: flex; flex-direction: column; align-items: center; gap: clamp(.6rem, 1.5vh, 1rem); }
-    .qr-card .marco { height: clamp(170px, 29vh, 370px); aspect-ratio: 1; background: var(--blanco); border-radius: var(--radio); padding: clamp(.8rem, 2vh, 1.3rem); display: flex; align-items: center; justify-content: center; box-shadow: var(--sombra-md); border: 3px solid var(--dorado); }
+    .qr-card .marco { height: clamp(195px, 32vh, 410px); aspect-ratio: 1; background: var(--blanco); border-radius: var(--radio); padding: clamp(.8rem, 2vh, 1.3rem); display: flex; align-items: center; justify-content: center; box-shadow: var(--sombra-md); border: 3px solid var(--dorado); }
+    .qr-slide { gap: clamp(.35rem, 1vh, .8rem) !important; }
+    .qr-slide .lead { margin-bottom: 0 !important; }
     .qr-card .marco img { width: 100%; height: 100%; object-fit: contain; }
     .qr-card span { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.9vh, 1.75rem); letter-spacing: .06em; text-transform: uppercase; color: var(--blanco); text-align: center; }
 
@@ -372,7 +374,7 @@
       .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, minmax(0,1fr)); gap: .6rem .5rem; }
 
       .qr-panel { gap: .45rem; }
-      .qr-card .marco { height: clamp(85px, 15vh, 125px); }
+      .qr-card .marco { height: clamp(95px, 17vh, 140px); }
       .qr-card span { font-size: .82rem; }
 
       .tarifas-grid { gap: .4rem; }
@@ -423,7 +425,7 @@
       .costo-item .valor { font-size: .95rem; }
       .costos-total { padding: .4rem .7rem; }
       .costos-total .monto { font-size: 1.4rem; }
-      .qr-card .marco { height: clamp(115px, 26vh, 200px); }
+      .qr-card .marco { height: clamp(135px, 30vh, 230px); }
     }
   </style>
 </head>
@@ -596,7 +598,7 @@
 
     <!-- ═══ 9. DESCRIPCIÓN DE PRODUCTOS/SERVICIOS ═══ -->
     <section class="slide" data-bg="9">
-      <div class="slide-inner">
+      <div class="slide-inner qr-slide">
         <p class="seccion-num">08 — Lo que ofrecemos</p>
         <h2>Descripción de <em>productos y servicios</em></h2>
         <p class="lead" style="margin-bottom:.2rem;">Catálogo web de moda, cotizaciones y reels del proceso de confección. Escanea y síguenos:</p>
@@ -631,33 +633,10 @@
       </div>
     </section>
 
-    <!-- ═══ 11. ETIQUETA Y EMPAQUE ═══ -->
+    <!-- ═══ 11. SEGMENTO OBJETIVO ═══ -->
     <section class="slide" data-bg="11">
       <div class="slide-inner">
-        <p class="seccion-num">10 — Presentación del producto</p>
-        <h2>Etiqueta y <em>Empaque</em></h2>
-        <div class="dos-col invertido">
-          <img src="../catalogo/pantalon-cafe.jpg" alt="Pantalón cargo café de la colección" />
-          <div class="col-texto">
-            <div class="dos-tarjetas" style="grid-template-columns:1fr;">
-              <div class="servicio-bloque">
-                <span class="icono">🏷️</span>
-                <div><h3>Etiqueta</h3><p>Etiquetas de tela satinada cosidas a las prendas, con hang tag de cartón y logo.</p></div>
-              </div>
-              <div class="servicio-bloque">
-                <span class="icono">🛍️</span>
-                <div><h3>Empaque</h3><p>Bolsas ecológicas reutilizables de papel Kraft, personalizadas con la marca.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ 12. SEGMENTO OBJETIVO ═══ -->
-    <section class="slide" data-bg="12">
-      <div class="slide-inner">
-        <p class="seccion-num">11 — A quién llegamos</p>
+        <p class="seccion-num">10 — A quién llegamos</p>
         <h2>Segmento <em>Objetivo</em></h2>
         <div class="segmento-grid">
           <div class="segmento-card">
@@ -674,10 +653,10 @@
       </div>
     </section>
 
-    <!-- ═══ 13. VENTAJAS COMPETITIVAS ═══ -->
-    <section class="slide" data-bg="13">
+    <!-- ═══ 12. VENTAJAS COMPETITIVAS ═══ -->
+    <section class="slide" data-bg="12">
       <div class="slide-inner">
-        <p class="seccion-num">12 — Lo que nos distingue</p>
+        <p class="seccion-num">11 — Lo que nos distingue</p>
         <h2>Ventajas <em>Competitivas</em></h2>
         <div class="dos-col">
           <p class="lead">
@@ -688,10 +667,10 @@
       </div>
     </section>
 
-    <!-- ═══ 14. PROCESO PRODUCTIVO ═══ -->
-    <section class="slide" data-bg="14">
+    <!-- ═══ 13. PROCESO PRODUCTIVO ═══ -->
+    <section class="slide" data-bg="13">
       <div class="slide-inner">
-        <p class="seccion-num">13 — Cómo lo hacemos</p>
+        <p class="seccion-num">12 — Cómo lo hacemos</p>
         <h2>Proceso <em>Productivo</em></h2>
         <div class="dos-col invertido">
           <img src="../catalogo/pantalon-beige.jpg" alt="Pantalón cargo beige de la colección" />
@@ -705,10 +684,10 @@
       </div>
     </section>
 
-    <!-- ═══ 15. PALETA DE COLORES ═══ -->
-    <section class="slide" data-bg="15">
+    <!-- ═══ 14. PALETA DE COLORES ═══ -->
+    <section class="slide" data-bg="14">
       <div class="slide-inner">
-        <p class="seccion-num">14 — Nuestra identidad visual</p>
+        <p class="seccion-num">13 — Nuestra identidad visual</p>
         <h2>Paleta de <em>colores</em></h2>
         <div class="paleta-grid">
           <div class="paleta-chip"><div class="swatch" style="background:#000000;"></div><div class="info"><div class="nombre">Negro</div><div class="hex">#000000</div></div></div>
@@ -726,10 +705,10 @@
       </div>
     </section>
 
-    <!-- ═══ 16. DETRÁS DE CÁMARAS ═══ -->
-    <section class="slide" data-bg="16">
+    <!-- ═══ 15. DETRÁS DE CÁMARAS ═══ -->
+    <section class="slide" data-bg="15">
       <div class="slide-inner">
-        <p class="seccion-num">15 — Cómo lo producimos</p>
+        <p class="seccion-num">14 — Cómo lo producimos</p>
         <h2>Detrás de <em>cámaras</em></h2>
         <div class="galeria-grid">
           <div class="galeria-card"><img src="img/bts-01-presentador.jpg" alt="Grabación frente a pantalla verde" /></div>
@@ -741,10 +720,10 @@
       </div>
     </section>
 
-    <!-- ═══ 17. PROYECCIONES DE VENTA DEL PORTAFOLIO DE MARKETING ═══ -->
-    <section class="slide" data-bg="17">
+    <!-- ═══ 16. PROYECCIONES DE VENTA DEL PORTAFOLIO DE MARKETING ═══ -->
+    <section class="slide" data-bg="16">
       <div class="slide-inner">
-        <p class="seccion-num">16 — Portafolio de marketing</p>
+        <p class="seccion-num">15 — Portafolio de marketing</p>
         <h2>Proyecciones de <em>venta</em></h2>
         <p class="lead" style="margin-bottom:.2rem;">Estudio de mercado de tarifas de servicios digitales (COP), como base para cotizar futuros clientes:</p>
         <div class="tarifas-grid">
@@ -770,10 +749,10 @@
       </div>
     </section>
 
-    <!-- ═══ 18. INFORME DE COSTOS ═══ -->
-    <section class="slide" data-bg="18">
+    <!-- ═══ 17. INFORME DE COSTOS ═══ -->
+    <section class="slide" data-bg="17">
       <div class="slide-inner">
-        <p class="seccion-num">17 — Presupuesto del proyecto</p>
+        <p class="seccion-num">16 — Presupuesto del proyecto</p>
         <h2>Informe de <em>costos y gastos</em></h2>
         <div class="costos-grid">
           <div class="costo-item"><span class="desc">Cámara Sony ZV-E10</span><span class="valor">$3.375.962</span></div>
@@ -798,8 +777,8 @@
       </div>
     </section>
 
-    <!-- ═══ 19. CIERRE ═══ -->
-    <section class="slide" data-bg="19">
+    <!-- ═══ 18. CIERRE ═══ -->
+    <section class="slide" data-bg="18">
       <div class="slide-inner final">
         <img class="logo-final" src="../img/logo.png" alt="WYLMONK" />
         <p class="label">Gracias por su atención</p>
@@ -816,7 +795,7 @@
     <button class="nav-btn" id="btnPrev" aria-label="Diapositiva anterior">‹</button>
     <div class="nav-puntos" id="navPuntos"></div>
     <button class="nav-btn" id="btnNext" aria-label="Siguiente diapositiva">›</button>
-    <span class="nav-contador" id="navContador">1 / 19</span>
+    <span class="nav-contador" id="navContador">1 / 18</span>
   </div>
 
   <script>
