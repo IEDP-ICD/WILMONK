@@ -1308,17 +1308,45 @@
     .revista-pagina {
       position: absolute;
       inset: 0;
-      background: var(--negro-suave);
-      border: 1px solid var(--gris-medio);
       transform-origin: left center;
       transform-style: preserve-3d;
-      backface-visibility: hidden;
       transition: transform 1.1s cubic-bezier(.645,.045,.355,1);
+    }
+
+    .revista-pagina.volteada {
+      transform: rotateY(-180deg);
+    }
+
+    /* Cada página tiene dos caras reales — al girar se ve el frente
+       y luego el reverso, como una hoja de libro de verdad */
+    .revista-cara {
+      position: absolute;
+      inset: 0;
+      background: var(--negro-suave);
+      border: 1px solid var(--gris-medio);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      transform: rotateY(0deg);
       overflow: hidden;
     }
 
+    .revista-cara-reverso {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .revista-cara-reverso .revista-reverso-marca {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 9vw, 3rem);
+      letter-spacing: 0.08em;
+      color: rgba(204,27,27,0.22);
+    }
+
     /* Sombra sutil de lomo — da sensación de páginas encuadernadas */
-    .revista-pagina::before {
+    .revista-cara::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -1327,15 +1355,10 @@
       z-index: 2;
     }
 
-    .revista-pagina.volteada {
-      transform: rotateY(-180deg);
-    }
-
     /* ── Portada estilo revista (foto real) ────────────────────── */
     .revista-portada {
       background: var(--negro);
       cursor: pointer;
-      position: relative;
     }
 
     .revista-portada-img {
@@ -2029,17 +2052,26 @@
     ];
 
     let revistaPaginaActual = 0;
+    let revistaAnimando = false;
     const revistaTotalPaginas = productosRevista.length + 1; // +1 por la portada
     const revistaSeleccion = {};
+    const REVISTA_Z_BASE = 1000;   // páginas normales (actual + siguientes)
+    const REVISTA_Z_VOLANDO = 9999; // página en pleno giro, por encima de todo
+    const REVISTA_DURACION_MS = 1100; // debe coincidir con la transición CSS
 
     function inicializarRevista() {
       const libro = document.getElementById('revistaLibro');
       if (!libro) return;
 
       let html = `
-        <div class="revista-pagina revista-portada" style="z-index:${revistaTotalPaginas}" data-index="0" onclick="revistaIrA(1)">
-          <img class="revista-portada-img" src="revista/portada.jpg" alt="WILMONK — WK 2026" />
-          <div class="revista-portada-hint">Toca para hojear el catálogo →</div>
+        <div class="revista-pagina revista-portada" style="z-index:${REVISTA_Z_BASE + revistaTotalPaginas}" data-index="0" onclick="revistaIrA(1)">
+          <div class="revista-cara revista-cara-frente">
+            <img class="revista-portada-img" src="revista/portada.jpg" alt="WILMONK — WK 2026" />
+            <div class="revista-portada-hint">Toca para hojear el catálogo →</div>
+          </div>
+          <div class="revista-cara revista-cara-reverso">
+            <div class="revista-reverso-marca">WK</div>
+          </div>
         </div>
       `;
 
@@ -2047,20 +2079,25 @@
         const idx = i + 1;
         const categoria = p.tipo === 'polo' ? 'Camisas' : 'Pantalones';
         html += `
-          <div class="revista-pagina" style="z-index:${revistaTotalPaginas - idx}" data-index="${idx}">
-            <div class="revista-producto">
-              <div class="revista-foto-wrap">
-                <img src="galeria/${p.archivo}" alt="${escHtml(p.nombre)}" loading="lazy" />
-              </div>
-              <div class="revista-info">
-                <div class="revista-categoria">${categoria}</div>
-                <div class="revista-nombre">${escHtml(p.nombre)}</div>
-                <div class="revista-tallas-label">Talla</div>
-                <div class="revista-tallas" data-idx="${idx}">
-                  ${p.tallas.map(t => `<button type="button" class="talla-btn" data-talla="${t}" onclick="revistaSeleccionarTalla(${idx}, '${t}', this)">${t}</button>`).join('')}
+          <div class="revista-pagina" style="z-index:${REVISTA_Z_BASE + revistaTotalPaginas - idx}" data-index="${idx}">
+            <div class="revista-cara revista-cara-frente">
+              <div class="revista-producto">
+                <div class="revista-foto-wrap">
+                  <img src="galeria/${p.archivo}" alt="${escHtml(p.nombre)}" loading="lazy" />
                 </div>
-                <a class="revista-cotizar btn-fashion" id="revistaLink${idx}" href="#" target="_blank" rel="noopener noreferrer">Pide tu cotización →</a>
+                <div class="revista-info">
+                  <div class="revista-categoria">${categoria}</div>
+                  <div class="revista-nombre">${escHtml(p.nombre)}</div>
+                  <div class="revista-tallas-label">Talla</div>
+                  <div class="revista-tallas" data-idx="${idx}">
+                    ${p.tallas.map(t => `<button type="button" class="talla-btn" data-talla="${t}" onclick="revistaSeleccionarTalla(${idx}, '${t}', this)">${t}</button>`).join('')}
+                  </div>
+                  <a class="revista-cotizar btn-fashion" id="revistaLink${idx}" href="#" target="_blank" rel="noopener noreferrer">Pide tu cotización →</a>
+                </div>
               </div>
+            </div>
+            <div class="revista-cara revista-cara-reverso">
+              <div class="revista-reverso-marca">WILMONK</div>
             </div>
           </div>
         `;
@@ -2103,12 +2140,34 @@
 
     function revistaIrA(nuevaPagina) {
       nuevaPagina = Math.max(0, Math.min(revistaTotalPaginas - 1, nuevaPagina));
+      if (nuevaPagina === revistaPaginaActual || revistaAnimando) return;
+
+      const avanzando = nuevaPagina > revistaPaginaActual;
+      // Al avanzar, gira la página que está actualmente arriba (revistaPaginaActual).
+      // Al retroceder, gira de vuelta la página que queda justo antes de nuevaPagina.
+      const idxQueGira = avanzando ? revistaPaginaActual : nuevaPagina;
+      const paginaQueGira = document.querySelector(`.revista-pagina[data-index="${idxQueGira}"]`);
+
+      // Mientras gira, sube por encima de todo para que se vean sus dos caras con claridad
+      if (paginaQueGira) paginaQueGira.style.zIndex = REVISTA_Z_VOLANDO;
+
+      revistaAnimando = true;
       document.querySelectorAll('.revista-pagina').forEach(pg => {
         const idx = parseInt(pg.dataset.index, 10);
         pg.classList.toggle('volteada', idx < nuevaPagina);
       });
       revistaPaginaActual = nuevaPagina;
       revistaActualizarControles();
+
+      setTimeout(() => {
+        if (paginaQueGira) {
+          const quedaVolteada = idxQueGira < revistaPaginaActual;
+          paginaQueGira.style.zIndex = quedaVolteada
+            ? String(idxQueGira)                                   // página ya pasada: al fondo
+            : String(REVISTA_Z_BASE + revistaTotalPaginas - idxQueGira); // vuelve al orden normal
+        }
+        revistaAnimando = false;
+      }, REVISTA_DURACION_MS + 40);
     }
 
     function revistaActualizarControles() {
