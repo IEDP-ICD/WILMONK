@@ -813,7 +813,8 @@
     .video-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: var(--carbon);
       display: block;
     }
 
@@ -1673,27 +1674,6 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════
-       VIDEOS DE MODA — todos son de TikTok, no se maneja YouTube
-       ni otra red en este proyecto.
-       Archivo: videos/videos.json
-       Formato:
-       [
-         {
-           "titulo": "Pasarela colección 2026",
-           "categoria": "Pasarela",
-           "descripcion": "Presentación completa de nuestra primera colección",
-           "tiktok_id": "7123456789012345678"
-         }
-       ]
-       El tiktok_id es la parte numérica de la URL del video:
-       tiktok.com/@usuario/video/ESTE_NÚMERO
-       Al cargar la página, el código consulta la API pública oEmbed
-       de TikTok con ese ID y reemplaza la miniatura y la descripción
-       por las reales del video. Si TikTok no responde (sin internet,
-       video privado o eliminado) se usan "titulo" y "descripcion".
-       ═══════════════════════════════════════════════════════════ -->
-
-  <!-- ═══════════════════════════════════════════════════════════
        REVISTA INTERACTIVA — catálogo tipo flipbook
        Los productos están definidos en el array `productos` dentro
        del bloque de JavaScript (buscar "REVISTA INTERACTIVA"). Usa las
@@ -1754,21 +1734,37 @@
        VIDEOS DE MODA — todos son de TikTok, no se maneja YouTube
        ni otra red en este proyecto.
        Archivo: videos/videos.json
-       Formato:
+       Formato (dos maneras de identificar el video, según lo que
+       se tenga a mano):
        [
          {
            "titulo": "Pasarela colección 2026",
            "categoria": "Pasarela",
            "descripcion": "Presentación completa de nuestra primera colección",
            "tiktok_id": "7123456789012345678"
+         },
+         {
+           "titulo": "Transición WylmonK",
+           "categoria": "Transición",
+           "descripcion": "La misma esencia, distinto estilo",
+           "url": "https://vt.tiktok.com/ZSbDRHS65/",
+           "miniatura": "transicion-wylmonk-1.jpg"
          }
        ]
-       El tiktok_id es la parte numérica de la URL del video:
+       El tiktok_id es la parte numérica de la URL larga del video:
        tiktok.com/@usuario/video/ESTE_NÚMERO
+       Si solo se tiene un enlace corto (vt.tiktok.com/xxxxx), se usa
+       "url" en su lugar con ese enlace tal cual — se usa directo
+       tanto para abrir el video como para consultar el oEmbed.
+       "miniatura" es opcional: el nombre de una imagen dentro de
+       videos/ (útil cuando el video no tiene formato vertical 9:16,
+       como una miniatura de diseño propia). Si se da, esa imagen se
+       muestra siempre y no se reemplaza.
        Al cargar la página, el código consulta la API pública oEmbed
-       de TikTok con ese ID y reemplaza la miniatura y la descripción
-       por las reales del video. Si TikTok no responde (sin internet,
-       video privado o eliminado) se usan "titulo" y "descripcion".
+       de TikTok con la URL del video y reemplaza la descripción (y,
+       si no hay "miniatura" propia, también la miniatura) por las
+       reales del video. Si TikTok no responde (sin internet, video
+       privado o eliminado) se usan "titulo" y "descripcion".
        ═══════════════════════════════════════════════════════════ -->
   <section class="seccion seccion-negra" id="videos">
     <div class="contenedor">
@@ -2196,11 +2192,14 @@
         }
 
         grid.innerHTML = videos.map((v, i) => {
-          const url = urlTikTok(v.tiktok_id);
+          const url = v.url || urlTikTok(v.tiktok_id);
+          const thumbHTML = v.miniatura
+            ? `<img id="video-thumb-${i}" src="videos/${escHtml(v.miniatura)}" alt="${escHtml(v.titulo)}" loading="lazy" />`
+            : `<div class="video-wrap-placeholder" id="video-thumb-${i}">🎵</div>`;
           return `
           <div class="video-card">
             <a class="video-wrap" href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver en TikTok: ${escHtml(v.titulo)}">
-              <div class="video-wrap-placeholder" id="video-thumb-${i}">🎵</div>
+              ${thumbHTML}
               <div class="video-play-badge"><span class="video-play-icon">▶</span></div>
             </a>
             <div class="video-info">
@@ -2212,9 +2211,12 @@
         `;
         }).join('');
 
-        // Trae la miniatura y la descripción reales de cada video desde TikTok
+        // Trae la descripción real de cada video desde TikTok. Si ya hay
+        // una miniatura propia en el JSON (v.miniatura), se conserva esa
+        // imagen y solo se actualiza el texto de la descripción.
         videos.forEach((v, i) => {
-          if (v.tiktok_id) cargarDatosTikTok(v.tiktok_id, i);
+          const url = v.url || (v.tiktok_id ? urlTikTok(v.tiktok_id) : null);
+          if (url) cargarDatosTikTok(url, i, !!v.miniatura);
         });
 
       } catch {
@@ -2239,27 +2241,31 @@
     /*
     ══════════════════════════════════════════════════════════════
     FUNCIÓN: cargarDatosTikTok — Consulta la API pública oEmbed de
-    TikTok (sin backend ni API key) para reemplazar el ícono musical
-    por la miniatura real del video y la descripción manual por el
-    texto real que el video tiene en TikTok. Si TikTok no responde
-    (sin internet, video privado o eliminado), la ficha se queda tal
-    cual quedó con los datos de videos.json.
+    TikTok (sin backend ni API key) para traer la descripción real
+    del video. Si la ficha no trae una miniatura propia (v.miniatura
+    en videos.json), también reemplaza el ícono musical por la
+    miniatura real del video. Si ya hay una miniatura propia, esa
+    imagen se conserva y solo se actualiza el texto. Si TikTok no
+    responde (sin internet, video privado o eliminado), la ficha se
+    queda tal cual quedó con los datos de videos.json.
     ══════════════════════════════════════════════════════════════
     */
-    async function cargarDatosTikTok(tiktokId, i) {
+    async function cargarDatosTikTok(videoUrl, i, tieneMiniaturaPropia) {
       try {
-        const resp = await fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(urlTikTok(tiktokId))}`);
+        const resp = await fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`);
         if (!resp.ok) throw new Error('oEmbed de TikTok no disponible');
         const data = await resp.json();
 
-        const thumbEl = document.getElementById(`video-thumb-${i}`);
-        if (thumbEl && data.thumbnail_url) {
-          const img = document.createElement('img');
-          img.id = `video-thumb-${i}`;
-          img.src = data.thumbnail_url;
-          img.alt = data.title || 'Video de TikTok';
-          img.loading = 'lazy';
-          thumbEl.replaceWith(img);
+        if (!tieneMiniaturaPropia) {
+          const thumbEl = document.getElementById(`video-thumb-${i}`);
+          if (thumbEl && data.thumbnail_url) {
+            const img = document.createElement('img');
+            img.id = `video-thumb-${i}`;
+            img.src = data.thumbnail_url;
+            img.alt = data.title || 'Video de TikTok';
+            img.loading = 'lazy';
+            thumbEl.replaceWith(img);
+          }
         }
 
         const descEl = document.getElementById(`video-desc-${i}`);

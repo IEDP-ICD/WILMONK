@@ -126,5 +126,37 @@
     "imagen": "pantalon-beige.jpg",
     "disponible": true,
     "destacada": false
+  },
+  {
+    "nombre": "Vestido Rosa Satinado",
+    "categoria": "Vestidos",
+    "descripcion": "Vestido largo en satín rosa palo, con escote cruzado y mangas amplias tipo capa.",
+    "imagen": "vestido-rosa-satinado.jpg",
+    "disponible": true,
+    "destacada": true
+  },
+  {
+    "nombre": "Vestido Azul Estampado",
+    "categoria": "Vestidos",
+    "descripcion": "Vestido midi azul navy con estampado floral en contraste y lazo en el cuello.",
+    "imagen": "vestido-azul-estampado.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Falda Rosa Satinada",
+    "categoria": "Faldas",
+    "descripcion": "Falda larga en satín rosa palo, cintura alta y caída amplia en corte círculo.",
+    "imagen": "falda-rosa-satinada.jpg",
+    "disponible": true,
+    "destacada": false
+  },
+  {
+    "nombre": "Falda Azul Navy",
+    "categoria": "Faldas",
+    "descripcion": "Falda larga azul navy, cintura alta con botones y caída fluida en corte círculo.",
+    "imagen": "falda-azul-navy.jpg",
+    "disponible": true,
+    "destacada": false
   }
 ]

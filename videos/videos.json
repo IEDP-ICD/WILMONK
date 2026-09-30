@@ -1,20 +1,37 @@
 [
   {
-    "titulo": "Pasarela WYLMONK — Colección 2026",
-    "categoria": "Pasarela",
-    "descripcion": "Presentación completa de nuestra primera colección. Beyond Trends. Beyond Limits. Beyond Tomorrow.",
-    "tiktok_id": "PEGA_AQUI_EL_NUMERO_DEL_VIDEO"
+    "titulo": "Transición WylmonK — De uniforme a nuevo estilo",
+    "categoria": "Transición",
+    "descripcion": "La misma esencia, distinto estilo: mira la transformación del uniforme clásico al nuevo outfit WylmonK.",
+    "url": "https://vt.tiktok.com/ZSbDRHS65/",
+    "miniatura": "transicion-wylmonk-1.jpg"
   },
   {
-    "titulo": "Cómo confeccionamos un vestido desde cero",
-    "categoria": "Proceso",
-    "descripcion": "Del trazo del patrón al vestido terminado. Todo el proceso de confección artesanal de WYLMONK.",
-    "tiktok_id": "PEGA_AQUI_EL_NUMERO_DEL_VIDEO"
+    "titulo": "Transición WylmonK — Mis colores, mi promo",
+    "categoria": "Transición",
+    "descripcion": "De un estilo a otro sin perder la esencia: la transición hacia los colores de la promo WylmonK.",
+    "url": "https://vt.tiktok.com/ZSbDdombj/",
+    "miniatura": "transicion-wylmonk-2.jpg"
   },
   {
-    "titulo": "Tendencias de moda 2026 — WYLMONK Edit",
-    "categoria": "Moda",
-    "descripcion": "Nuestra selección de las tendencias más relevantes de la temporada y cómo las interpretamos en cada prenda.",
-    "tiktok_id": "PEGA_AQUI_EL_NUMERO_DEL_VIDEO"
+    "titulo": "Camisa Promo 2026 — Diseño exclusivo",
+    "categoria": "Promo 2026",
+    "descripcion": "Frente, espalda y detalles del diseño exclusivo de la camisa Promo 2026, en negro, azul y blanco.",
+    "url": "https://vt.tiktok.com/ZSbBgsxo2/",
+    "miniatura": "camisa-promo-2026.jpg"
+  },
+  {
+    "titulo": "Detrás de Cámara",
+    "categoria": "Detrás de cámara",
+    "descripcion": "Así se vive una sesión de fotos de WylmonK: el detrás de cámara de nuestras producciones.",
+    "url": "https://vt.tiktok.com/ZSbBgGnxA/",
+    "miniatura": "detras-de-camara.jpg"
+  },
+  {
+    "titulo": "Nueva Colección — Estilo que te acompaña",
+    "categoria": "Nueva Colección",
+    "descripcion": "Comodidad, calidad y estilo: conoce la nueva colección WylmonK.",
+    "url": "https://vt.tiktok.com/ZSbBgsxo2/",
+    "miniatura": "nueva-coleccion.jpg"
   }
 ]
